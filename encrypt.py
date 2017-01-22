@@ -79,7 +79,8 @@ class Algorithm:
                     "hash": ''.join(h_list),
                     "prefix": self.key_codes['id'] +
                               self.key_codes['key'][s_length[:1]] + self.key_codes['key'][s_length[1:]] +
-                              '='}
+                              '=',
+                    "suffix": '=' + self.key_codes['key'][str(offset)]}
         else:
             for i in range(offset, len(text)):
                 for l in l_list:
