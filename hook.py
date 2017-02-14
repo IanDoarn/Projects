@@ -23,7 +23,6 @@ if __name__ == '__main__':
     parser.add_argument('-c', '--connect', nargs=2, metavar=('URL', 'SESSIONID'), help='Hook python to a running chromedriver session')
     parser.add_argument('-k', '--kill', action='store_true', help='Unhook python from the driver')
 
-
     args = vars(parser.parse_args())
 
     if args['connect']:
