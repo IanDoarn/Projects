@@ -1,0 +1,2 @@
+This is a filler document for the story line of a possible text-based adventure game. The sole purpose of this small project is to see how
+well I can write python, using basic python and maybe more! I might come back and change this text and I might not, who knows!
