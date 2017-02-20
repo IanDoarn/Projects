@@ -14,14 +14,13 @@ This is a basic example that will allow python to run along side other programmi
 heavy macro automation and quick scripting.
 
 """
-driver = None
+
 
 if __name__ == '__main__':
-    global driver
+    
 
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--connect', nargs=2, metavar=('URL', 'SESSIONID'), help='Hook python to a running chromedriver session')
-    parser.add_argument('-k', '--kill', action='store_true', help='Unhook python from the driver')
 
     args = vars(parser.parse_args())
 
@@ -44,6 +43,7 @@ if __name__ == '__main__':
         Set the driver session_id to the already opened session_id
         """
         driver.session_id = session_id
+        url = driver.command_executor._url
         """
         Now python is connected to the process.
 
@@ -51,16 +51,4 @@ if __name__ == '__main__':
         """
         driver.get("http://www.stackoverflow.com")
 
-    if args['kill']:
-        """
-        Close driver connection session
-        """
-        driver.close()
-        """
-        Close chromedriver.exe
-        """
-        driver.quit()
-        """
-        Close the script and python process
-        """
-        sys.exit()
+   
