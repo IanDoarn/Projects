@@ -12,18 +12,22 @@ https://www.youtube.com/watch?v=CB_NCoxzQnk
 https://github.com/joeyajames/Python/blob/master/SortingAlgorithms.py
 
 """
-from __future__ import division
-import sys
+import time
 import random
+import datetime
+
 
 THRESHOLD = 20
-SIZE = 100
+SIZE = 10000
 SPAN = 1000000
+
 
 class QuickSort:
 
     def __init__(self):
-        self.sorted_array = None
+        self.FUNC_QUICK_SELECTION = 0
+        self.PARTITIONS = 0
+        self.SORTS = 0
 
     def quick_sort(self, array):
         """
@@ -50,6 +54,8 @@ class QuickSort:
         :param hi: Hi index
         :return:
         """
+
+        self.SORTS += 1
 
         if hi - low < THRESHOLD and low < hi:
             self.quick_selection(array, low, hi)
@@ -93,6 +99,7 @@ class QuickSort:
 
 
     def partition(self, array, low, hi):
+
         """
         This is the actual swapping procedure of quick sort
 
@@ -112,10 +119,10 @@ class QuickSort:
         :return:
         """
 
-        #TODO: Fix line 121 >> array[pivot_index], array[low] = array[low], array[pivot_index]; IndexError: list index out of range
+        self.PARTITIONS += 1
 
-        pivot = self.pivot(array, low, hi)
-        pivot_index = array[pivot]
+        pivot_index = self.pivot(array, low, hi)
+        pivot_value = array[pivot_index]
 
         # I love swapping in python
         array[pivot_index], array[low] = array[low], array[pivot_index]
@@ -123,12 +130,12 @@ class QuickSort:
         border = low
 
         for index in range(low, hi + 1):
-            if array[index] < pivot:
+            if array[index] < pivot_value:
                 border += 1
                 array[index], array[border] = array[border], array[index]
             array[low], array[border] = array[border], array[low]
 
-        return (border)
+        return border
 
 
     def quick_selection(self, x, first, last):
@@ -140,6 +147,10 @@ class QuickSort:
         :param last:
         :return:
         """
+        # print(x)
+
+        self.FUNC_QUICK_SELECTION += 1
+
         for i in range(first, last):
             minIndex = i
             for j in range(i + 1, last + 1):
@@ -147,12 +158,40 @@ class QuickSort:
                     minIndex = j
             if minIndex != i:
                 x[i], x[minIndex] = x[minIndex], x[i]
+        return x
 
 #================================
 # Now we test to see if it works!
 #================================
 
-us = [random.randint(0,SPAN) for a in range(0, SIZE)]
-qs = QuickSort()
-print(qs.quick_sort(us))
+if __name__ == '__main__':
+    import sys
+
+    if len(sys.argv[1:]) < 1:
+
+        print('using default size: [{}]'.format(str(SIZE)))
+        us = [random.randint(0,SPAN) for a in range(0, SIZE)]
+        qs = QuickSort()
+
+        start_time = time.time()
+        qs.quick_sort(us)
+        print('SIZE: {} Elapsed time: {} seconds'.format(str(SIZE), str(time.time() - start_time)))
+        print('Selections: [{}] Sorts: [{}] Partitions: [{}]'.format(str(qs.FUNC_QUICK_SELECTION),
+                                                                     str(qs.SORTS),
+                                                                     str(qs.PARTITIONS)))
+    else:
+
+        SIZE = int(sys.argv[1])
+
+        us = [random.randint(0, SPAN) for a in range(0, SIZE)]
+        qs = QuickSort()
+
+        start_time = time.time()
+        qs.quick_sort(us)
+
+        print('SIZE: [{}] Elapsed time: [{}] seconds'.format(str(SIZE), str(time.time() - start_time)))
+        print('Selections: [{}] Sorts: [{}] Partitions: [{}]'.format(str(qs.FUNC_QUICK_SELECTION),
+                                                                     str(qs.SORTS),
+                                                                     str(qs.PARTITIONS)))
+
 
