@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b3e632b-ce6a-440c-b4a5-8efb2ddd1e9f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Python/school/quicksort.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/projects.iml" afterPath="$PROJECT_DIR$/.idea/projects.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Python/school/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Python/school/generatedigits.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Python/school/inputdigits.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Python/school/inputorgeneratedicerolls.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Python/school/onemoredigit.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Python/school/oneroundonerollyahtzee.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Python/quicksort.py" afterPath="$PROJECT_DIR$/Python/quicksort.py" />
     </list>
@@ -21,24 +24,72 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="quicksort.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Python/quicksort.py">
+      <file leaf-file-name="quicksort.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Python/school/quicksort.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="63" column="7" lean-forward="true" selection-start-line="63" selection-start-column="7" selection-end-line="63" selection-end-column="7" />
+            <state relative-caret-position="-221">
+              <caret line="55" column="11" lean-forward="true" selection-start-line="55" selection-start-column="11" selection-end-line="55" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="onemoredigit.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Python/school/onemoredigit.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="31">
+              <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
               <folding>
-                <element signature="e#270#281#0" expanded="true" />
+                <element signature="e#0#31#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="quicksort.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Python/school/quicksort.py">
+      <file leaf-file-name="generatedigits.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Python/school/generatedigits.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="74" column="27" lean-forward="true" selection-start-line="47" selection-start-column="4" selection-end-line="74" selection-end-column="27" />
-              <folding />
+            <state relative-caret-position="272">
+              <caret line="16" column="41" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="16" selection-end-column="41" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="inputdigits.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Python/school/inputdigits.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="11" lean-forward="true" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="inputorgeneratedicerolls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Python/school/inputorgeneratedicerolls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="13" column="40" lean-forward="true" selection-start-line="12" selection-start-column="4" selection-end-line="13" selection-end-column="40" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="oneroundonerollyahtzee.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Python/school/oneroundonerollyahtzee.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="575">
+              <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -79,6 +130,12 @@
         <option value="$PROJECT_DIR$/rollthedice.py" />
         <option value="$PROJECT_DIR$/Python/school/quicksort.py" />
         <option value="$PROJECT_DIR$/Python/quicksort.py" />
+        <option value="$PROJECT_DIR$/Python/school/__init__.py" />
+        <option value="$PROJECT_DIR$/Python/school/onemoredigit.py" />
+        <option value="$PROJECT_DIR$/Python/school/generatedigits.py" />
+        <option value="$PROJECT_DIR$/Python/school/inputdigits.py" />
+        <option value="$PROJECT_DIR$/Python/school/inputorgeneratedicerolls.py" />
+        <option value="$PROJECT_DIR$/Python/school/oneroundonerollyahtzee.py" />
       </list>
     </option>
   </component>
@@ -505,7 +562,7 @@
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25609756" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26636714" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -553,7 +610,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#270#281#0" expanded="true" />
+            <element signature="e#270#281#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -563,7 +620,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#270#281#0" expanded="true" />
+            <element signature="e#270#281#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -573,7 +630,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#270#281#0" expanded="true" />
+            <element signature="e#270#281#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -583,7 +640,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#270#281#0" expanded="true" />
+            <element signature="e#270#281#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -609,20 +666,86 @@
     <entry file="file://$PROJECT_DIR$/encrypt.py" />
     <entry file="file://$PROJECT_DIR$/fibonacci.py" />
     <entry file="file://$PROJECT_DIR$/rollthedice.py" />
+    <entry file="file://$PROJECT_DIR$/Python/quicksort.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="152" column="8" lean-forward="false" selection-start-line="152" selection-start-column="8" selection-end-line="152" selection-end-column="8" />
+          <folding>
+            <element signature="e#270#281#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Python/school/quicksort.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="74" column="27" lean-forward="true" selection-start-line="47" selection-start-column="4" selection-end-line="74" selection-end-column="27" />
+        <state relative-caret-position="-221">
+          <caret line="55" column="11" lean-forward="true" selection-start-line="55" selection-start-column="11" selection-end-line="55" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Python/quicksort.py">
+    <entry file="file://$PROJECT_DIR$/Python/school/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="63" column="7" lean-forward="true" selection-start-line="63" selection-start-column="7" selection-end-line="63" selection-end-column="7" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Python/school/onemoredigit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31">
+          <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
           <folding>
-            <element signature="e#270#281#0" expanded="true" />
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Python/school/generatedigits.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="41" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="16" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Python/school/inputdigits.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="11" lean-forward="true" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Python/school/inputorgeneratedicerolls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="13" column="40" lean-forward="true" selection-start-line="12" selection-start-column="4" selection-end-line="13" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2016.3/system/python_stubs/775026849/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2166">
+          <caret line="297" column="4" lean-forward="false" selection-start-line="297" selection-start-column="4" selection-end-line="297" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Python/school/oneroundonerollyahtzee.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
