@@ -1,0 +1,11 @@
+C:\Users\doarni\projects\C#\synth\Snaeky\bin\Debug\Snaeky.exe.config
+C:\Users\doarni\projects\C#\synth\Snaeky\obj\Debug\Snaeky.csprojResolveAssemblyReference.cache
+C:\Users\doarni\projects\C#\synth\Snaeky\obj\Debug\Snaeky.Form1.resources
+C:\Users\doarni\projects\C#\synth\Snaeky\obj\Debug\Snaeky.Properties.Resources.resources
+C:\Users\doarni\projects\C#\synth\Snaeky\obj\Debug\Snaeky.csproj.GenerateResource.Cache
+C:\Users\doarni\projects\C#\synth\Snaeky\bin\Debug\Snaeky.exe
+C:\Users\doarni\projects\C#\synth\Snaeky\bin\Debug\Snaeky.pdb
+C:\Users\doarni\projects\C#\synth\Snaeky\obj\Debug\Snaeky.exe
+C:\Users\doarni\projects\C#\synth\Snaeky\obj\Debug\Snaeky.pdb
+C:\Users\doarni\projects\C#\synth\Snaeky\bin\Debug\NAudio.dll
+C:\Users\doarni\projects\C#\synth\Snaeky\bin\Debug\NAudio.xml

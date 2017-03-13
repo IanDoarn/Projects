@@ -1,0 +1,8 @@
+C:\Users\doarni\projects\C#\synth\synth\bin\Debug\synth.exe.config
+C:\Users\doarni\projects\C#\synth\synth\bin\Debug\synth.exe
+C:\Users\doarni\projects\C#\synth\synth\bin\Debug\synth.pdb
+C:\Users\doarni\projects\C#\synth\synth\bin\Debug\NAudio.dll
+C:\Users\doarni\projects\C#\synth\synth\bin\Debug\NAudio.xml
+C:\Users\doarni\projects\C#\synth\synth\obj\Debug\synth.csprojResolveAssemblyReference.cache
+C:\Users\doarni\projects\C#\synth\synth\obj\Debug\synth.exe
+C:\Users\doarni\projects\C#\synth\synth\obj\Debug\synth.pdb
