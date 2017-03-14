@@ -23,8 +23,6 @@ Lower Section:
 13. Chance
 """
 
-SELECTIONS = {}
-
 class OneRoundOneRollYahtzee:
 
     def __init__(self):
@@ -39,14 +37,17 @@ class OneRoundOneRollYahtzee:
 
     @staticmethod
     def format_array(array):
-        if ',' in str(array):
-            return (str(array).replace(',', '')).strip('[]')
+        if len(array) < 5:
+            print('You only rolled {} time(s)'.format(str(5 - (5 - len(array)))))
+            raise ValueError('Incorrect array length')
+        elif len(array) > 5:
+            print('You rolled too many times.')
         else:
-            return str(array).strip('[]')
+            return (str(array).replace(',', '')).strip('[]')
 
     @staticmethod
     def make_random_roll():
-        return [random.randrange(DICE_RANGE) for x in range(1, ROLL_RANGE)]
+        return [random.randint(1, DICE_RANGE) for x in range(0, ROLL_RANGE)]
 
     def sort_array(self, array):
         return self.qs.quick_sort(array)
@@ -83,11 +84,11 @@ class OneRoundOneRollYahtzee:
 
         def three_of_a_kind(array):
             if data[most_common_element] == 3:
-                return True, sum(array)
+                return 'Three Of A Kind', True, sum(array)
 
         def four_of_a_kind(array):
             if data[most_common_element] == 4:
-                return True, sum(array)
+                return 'Four Of A Kind', True, sum(array)
 
         def full_house():
             _dict = data
@@ -95,7 +96,7 @@ class OneRoundOneRollYahtzee:
                 _dict.pop(most_common_element, None)
                 mce = max(_dict, key=dict.get)
                 if _dict[mce] == 2:
-                    return True, 25
+                    return 'Full House', True, 25
 
         def small_straight(array):
             __array = self.sort_array(array)
@@ -106,7 +107,7 @@ class OneRoundOneRollYahtzee:
                 else:
                     primary_set.append(i)
             if len(primary_set) == 4:
-                return True, 30
+                return 'Small Straight', True, 30
 
         def large_straight(array):
             __array = self.sort_array(array)
@@ -117,7 +118,7 @@ class OneRoundOneRollYahtzee:
                 else:
                     primary_set.append(i)
             if len(primary_set) == 5:
-                return True, 40
+                return 'Large Straight', True, 40
 
         def yahtzee(array):
             for i in array:
@@ -125,11 +126,11 @@ class OneRoundOneRollYahtzee:
                     pass
                 else:
                     return False
-            return True, 50
+            return 'Yahtzee', True, 50
 
         def chance(array):
             if data[most_common_element] > 1:
-                return True, sum(array)
+                return 'Chance', True, sum(array)
 
         '''
         7. Three Of A Kind
@@ -158,6 +159,28 @@ class OneRoundOneRollYahtzee:
         else:
             print('That is not a rule! "{}"'.format(rule))
 
+def game(array):
+    yahtzee_rules = OneRoundOneRollYahtzee()
+
+    print('The five rolls in non-decreasing order are:' + yahtzee_rules.format_array(array))
+    print(SELECTION_PROMPT)
+    selection = input('Please enter the number corresponding to your chosen category:')
+
+    if int(selection) in [1, 2, 3, 4, 5, 6]:
+        key, value, arr_sum, data, mcn = yahtzee_rules.read_upper_section(array)
+        print('Your score for the {} category is : {}.'.format(key, str(int(data[mcn]) * int(mcn))))
+
+    elif int(selection) in [7, 8, 9, 10, 11, 12, 13]:
+        try:
+            selection_name, result, score = yahtzee_rules.read_lower_section(array, selection)
+
+            if result == True:
+                print('Your score for the {} category is : {}.'.format(selection_name, score))
+
+            else:
+                print('The Yahtzee category is not legal for this roll: {}'.format(yahtzee_rules.format_array(array)))
+        except:
+            print('The Yahtzee category is not legal for this roll: {}'.format(yahtzee_rules.format_array(array)))
 
 def main():
     yahtzee_rules = OneRoundOneRollYahtzee()
@@ -171,18 +194,12 @@ def main():
     elif _input == '1':
         ask = input('Please enter the five dice rolls:')
         array = yahtzee_rules.make_array(ask)
-        print('The five rolls in non-decreasing order are:' + yahtzee_rules.format_array(array))
-        print(SELECTION_PROMPT)
-        selection = input('Please enter the number corresponding to your chosen category:')
+        game(array)
 
-        if int(selection) in [1, 2, 3, 4, 5, 6]:
-            key, value, arr_sum, data, mcn = yahtzee_rules.read_upper_section(array)
-            print('Your score for the {} is :{}.'.format(key, data[mcn]))
+    elif _input == '2':
+        array = yahtzee_rules.make_random_roll()
+        game(yahtzee_rules.sort_array(array))
 
-        elif int(selection) in [7, 8, 9, 10, 11, 12, 13]:
-            a, b = yahtzee_rules.read_lower_section(array, selection)
-            print(a)
-            print(b)
 
 if __name__ == '__main__':
     main()

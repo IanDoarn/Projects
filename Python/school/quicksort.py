@@ -14,7 +14,6 @@ https://github.com/joeyajames/Python/blob/master/SortingAlgorithms.py
 """
 import time
 import random
-import datetime
 
 
 THRESHOLD = 20
@@ -166,6 +165,8 @@ class QuickSort:
 #================================
 # Now we test to see if it works!
 #================================
+
+# Example usage if used from the command line, otherwise, can be imported as a module
 
 if __name__ == '__main__':
     import sys
