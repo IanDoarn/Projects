@@ -12,6 +12,7 @@ class InputDigits:
 
     @staticmethod
     def format_array(array):
+
         if ',' in str(array):
             return (str(array).replace(',', '')).strip('[]')
         else:

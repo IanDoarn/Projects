@@ -2,7 +2,7 @@ import random
 import sys
 from quicksort import QuickSort
 
-RANGE = 10
+RANGE = 100
 
 class GenerateDigits:
 

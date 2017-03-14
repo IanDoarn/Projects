@@ -150,7 +150,7 @@ class QuickSort:
         :param last:
         :return:
         """
-        print(x)
+        # print(x)
 
         self.FUNC_QUICK_SELECTION += 1
 
