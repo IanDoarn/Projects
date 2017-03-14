@@ -1,27 +1,33 @@
-import java.util.ArrayList;
-
 /**
  * Created by doarni on 3/14/2017.
  */
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.*;
 public class ProjectUtils
 {
+    private static Random random = new Random();
+    
+    public static int generatRandomInteger(int min, int max)
+    {
+        return random.nextInt((max - min) + 1) + min;
+    }
     public static int[] makeIntegerArray(String userInput)
     {
-        ArrayList<Integer> arr = new ArrayList<>();
-        char[] charArray;
-        charArray = userInput.toCharArray();
+        String[] stringArray = userInput.split(" ");
+        int[] intArray = new int[stringArray.length];
 
-        for(int i = 0; i < charArray.length; i++)
+        for(int i = 0; i < stringArray.length; i++)
         {
-            int n = Character.getNumericValue(charArray[i]);
-            arr.add(i, n);
-        }
-
-        int[] intArray = new int[arr.size()];
-
-        for(int i = 0; i < intArray.length; i++)
-        {
-            intArray[i] = arr.get(i);
+            try
+            {
+                intArray[i] = Integer.parseInt(stringArray[i]);
+            }
+            catch (NumberFormatException nfe)
+            {
+                //NOTE: Ignore this error
+            }
         }
 
         return intArray;
@@ -29,11 +35,38 @@ public class ProjectUtils
 
     public static String makeStringArray(int[] intArray)
     {
-        String string = "";
-        for(int i = 0; i < intArray.length; i++)
-        {
-            string += " " + Integer.toString(intArray[i]);
+        StringBuilder builder = new StringBuilder();
+        for (int i : intArray) {
+            builder.append(i);
+            builder.append(' ');
         }
-        return string;
+        String text = builder.toString();
+        return text;
+    }
+
+    public static int[] insertIntoArray(int[] inputArray, int newInt)
+    {
+        List<Integer> num = new ArrayList<>();
+
+        for(int i = 0; i < inputArray.length; i++)
+        {
+            num.add(inputArray[i]);
+        }
+        num.add(newInt);
+
+        int[] intArray = new int[num.size()];
+
+        for(int i = 0; i < num.size(); i++)
+        {
+            intArray[i] = num.get(i);
+        }
+
+        return intArray;
+    }
+
+    public static int[] sortArray(int[] array)
+    {
+        QuickSort qs = new QuickSort();
+        return qs.sort(array);
     }
 }

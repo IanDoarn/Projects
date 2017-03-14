@@ -1,0 +1,226 @@
+<html>
+<head>
+<title>quicksort.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #f8f8f2; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(117,113,94); }
+.s1 { color: rgb(248,248,242); }
+.s2 { color: rgb(102,217,239); font-style: italic; }
+.s3 { color: rgb(249,38,114); }
+.s4 { color: rgb(174,129,255); }
+.s5 { color: rgb(204,120,50); }
+.s6 { color: rgb(0,128,128); }
+</style>
+</head>
+<BODY BGCOLOR="#272822">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+quicksort.py</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">&quot;&quot;&quot; 
+Quick Sort Algorithm 
+Performance depends largely on Pivot selection. 
+Worst case: O(n^2) 
+Best case: O(n log n) 
+ 
+Written by: Ian Doarn 
+ 
+References: 
+ 
+https://www.youtube.com/watch?v=CB_NCoxzQnk 
+https://github.com/joeyajames/Python/blob/master/SortingAlgorithms.py 
+ 
+&quot;&quot;&quot;</span><span class="s1"> 
+ 
+</span><span class="s2">import </span><span class="s1">time 
+</span><span class="s2">import </span><span class="s1">random 
+</span><span class="s2">import </span><span class="s1">datetime 
+ 
+ 
+THRESHOLD </span><span class="s3">= </span><span class="s4">20</span><span class="s1"> 
+SIZE </span><span class="s3">= </span><span class="s4">10000</span><span class="s1"> 
+SPAN </span><span class="s3">= </span><span class="s4">1000000</span><span class="s1"> 
+ 
+ 
+</span><span class="s2">class </span><span class="s1">QuickSort</span><span class="s3">:</span><span class="s1"> 
+ 
+    </span><span class="s2">def </span><span class="s1">__init__(self)</span><span class="s3">:</span><span class="s1"> 
+        self.FUNC_QUICK_SELECTION </span><span class="s3">= </span><span class="s4">0</span><span class="s1"> 
+        self.PARTITIONS </span><span class="s3">= </span><span class="s4">0</span><span class="s1"> 
+        self.SORTS </span><span class="s3">= </span><span class="s4">0</span><span class="s1"> 
+ 
+    </span><span class="s2">def </span><span class="s1">quick_sort(self</span><span class="s5">, </span><span class="s1">array)</span><span class="s3">:</span><span class="s1"> 
+        </span><span class="s0">&quot;&quot;&quot; 
+        Takes a list of values and passes 
+        it into the recursive function sort() 
+ 
+        Sort takes the inputs of: 
+ 
+            array - the list of values 
+            low - the low index of the list: 0 
+            hi - the hi index of the list: len(array) - 1 
+ 
+        :param array: List of values 
+        :return: sorted array 
+        &quot;&quot;&quot;</span><span class="s1"> 
+        </span><span class="s2">return </span><span class="s1">self.sort(array</span><span class="s5">, </span><span class="s4">0</span><span class="s5">, </span><span class="s1">len(array)</span><span class="s3">-</span><span class="s4">1</span><span class="s1">) 
+ 
+    </span><span class="s2">def </span><span class="s1">sort(self</span><span class="s5">, </span><span class="s1">array</span><span class="s5">, </span><span class="s1">low</span><span class="s5">, </span><span class="s1">hi)</span><span class="s3">:</span><span class="s1"> 
+        </span><span class="s0">&quot;&quot;&quot; 
+        Recessive function 
+ 
+        :param array: List of numbers to srot 
+        :param low: Low index 
+        :param hi: Hi index 
+        :return: 
+        &quot;&quot;&quot;</span><span class="s1"> 
+ 
+        self.SORTS </span><span class="s3">+= </span><span class="s4">1</span><span class="s1"> 
+        sorted_array </span><span class="s3">= </span><span class="s1">[] 
+ 
+        </span><span class="s2">if </span><span class="s1">hi </span><span class="s3">- </span><span class="s1">low </span><span class="s3">&lt; </span><span class="s1">THRESHOLD </span><span class="s2">and </span><span class="s1">low </span><span class="s3">&lt; </span><span class="s1">hi</span><span class="s3">:</span><span class="s1"> 
+            sorted_array </span><span class="s3">= </span><span class="s1">self.quick_selection(array</span><span class="s5">, </span><span class="s1">low</span><span class="s5">, </span><span class="s1">hi) 
+ 
+        </span><span class="s2">elif </span><span class="s1">low </span><span class="s3">&lt; </span><span class="s1">hi</span><span class="s3">: </span><span class="s0"># if there is more than one item in the list</span><span class="s1"> 
+            </span><span class="s0"># Partition does most of the work of the quick sort</span><span class="s1"> 
+            </span><span class="s0"># It returns the pivot around which we partition the list</span><span class="s1"> 
+            p </span><span class="s3">= </span><span class="s1">self.partition(array</span><span class="s5">, </span><span class="s1">low</span><span class="s5">, </span><span class="s1">hi) 
+            sorted_array </span><span class="s3">= </span><span class="s1">p 
+            </span><span class="s0"># recursively called for items to the left of the pivot</span><span class="s1"> 
+            sorted_array </span><span class="s3">= </span><span class="s1">self.sort(array</span><span class="s5">, </span><span class="s1">low</span><span class="s5">, </span><span class="s1">p </span><span class="s3">- </span><span class="s4">1</span><span class="s1">) 
+ 
+            </span><span class="s0"># recursively called for items to the right of the pivot</span><span class="s1"> 
+            sorted_array </span><span class="s3">= </span><span class="s1">self.sort(array</span><span class="s5">, </span><span class="s1">p </span><span class="s3">+ </span><span class="s4">1</span><span class="s5">, </span><span class="s1">hi) 
+ 
+        </span><span class="s2">return </span><span class="s1">sorted_array 
+ 
+    </span><span class="s2">def </span><span class="s1">pivot(self</span><span class="s5">, </span><span class="s1">array</span><span class="s5">, </span><span class="s1">low</span><span class="s5">, </span><span class="s1">hi)</span><span class="s3">:</span><span class="s1"> 
+        </span><span class="s0">&quot;&quot;&quot; 
+        This is one of the key parts of the quick sort 
+        We calculate a mid index using the low index 
+        and the high and then through a series of 
+        comparisons between: low, mid, hi 
+        we choose the middle of the three. 
+        This will benefit us greatly when we use the partition 
+        function 
+ 
+        :param array: List of values 
+        :param low: Low index 
+        :param hi: High index 
+        :return: pivot 
+        &quot;&quot;&quot;</span><span class="s1"> 
+ 
+        mid </span><span class="s3">= </span><span class="s1">(hi </span><span class="s3">+ </span><span class="s1">low) </span><span class="s3">// </span><span class="s4">2</span><span class="s1"> 
+ 
+        sorted_list </span><span class="s3">= </span><span class="s1">sorted([array[low]</span><span class="s5">, </span><span class="s1">array[mid]</span><span class="s5">, </span><span class="s1">array[hi]]) 
+ 
+        </span><span class="s2">if </span><span class="s1">sorted_list[</span><span class="s4">1</span><span class="s1">] </span><span class="s3">== </span><span class="s1">array[low]</span><span class="s3">:</span><span class="s1"> 
+            </span><span class="s2">return </span><span class="s1">low 
+        </span><span class="s2">elif </span><span class="s1">sorted_list[</span><span class="s4">1</span><span class="s1">] </span><span class="s3">== </span><span class="s1">array[mid]</span><span class="s3">:</span><span class="s1"> 
+            </span><span class="s2">return </span><span class="s1">mid 
+        </span><span class="s2">return </span><span class="s1">hi 
+ 
+ 
+    </span><span class="s2">def </span><span class="s1">partition(self</span><span class="s5">, </span><span class="s1">array</span><span class="s5">, </span><span class="s1">low</span><span class="s5">, </span><span class="s1">hi)</span><span class="s3">:</span><span class="s1"> 
+ 
+        </span><span class="s0">&quot;&quot;&quot; 
+        This is the actual swapping procedure of quick sort 
+ 
+        First, we get the pivot index and set it as the border value 
+        Next, we iterate our list from low to high, if our the item is 
+        less than out pivot, we swap the item with the border. This way 
+        all items below the pivot value are swapped to the left side of the list 
+        with the border being the control point. Each time we iterate, we increment the border 
+        value by 1 moving it to the right one space. 
+        Finally, we swap the low value into the border position and return the 
+        border as the index for out pivot. 
+ 
+ 
+        :param array: 
+        :param low: 
+        :param hi: 
+        :return: 
+        &quot;&quot;&quot;</span><span class="s1"> 
+ 
+        self.PARTITIONS </span><span class="s3">+= </span><span class="s4">1</span><span class="s1"> 
+ 
+        pivot_index </span><span class="s3">= </span><span class="s1">self.pivot(array</span><span class="s5">, </span><span class="s1">low</span><span class="s5">, </span><span class="s1">hi) 
+        pivot_value </span><span class="s3">= </span><span class="s1">array[pivot_index] 
+ 
+        </span><span class="s0"># I love swapping in python</span><span class="s1"> 
+        array[pivot_index]</span><span class="s5">, </span><span class="s1">array[low] </span><span class="s3">= </span><span class="s1">array[low]</span><span class="s5">, </span><span class="s1">array[pivot_index] 
+ 
+        border </span><span class="s3">= </span><span class="s1">low 
+ 
+        </span><span class="s2">for </span><span class="s1">index </span><span class="s2">in </span><span class="s1">range(low</span><span class="s5">, </span><span class="s1">hi </span><span class="s3">+ </span><span class="s4">1</span><span class="s1">)</span><span class="s3">:</span><span class="s1"> 
+            </span><span class="s2">if </span><span class="s1">array[index] </span><span class="s3">&lt; </span><span class="s1">pivot_value</span><span class="s3">:</span><span class="s1"> 
+                border </span><span class="s3">+= </span><span class="s4">1</span><span class="s1"> 
+                array[index]</span><span class="s5">, </span><span class="s1">array[border] </span><span class="s3">= </span><span class="s1">array[border]</span><span class="s5">, </span><span class="s1">array[index] 
+            array[low]</span><span class="s5">, </span><span class="s1">array[border] </span><span class="s3">= </span><span class="s1">array[border]</span><span class="s5">, </span><span class="s1">array[low] 
+ 
+        </span><span class="s2">return </span><span class="s1">border 
+ 
+ 
+    </span><span class="s2">def </span><span class="s1">quick_selection(self</span><span class="s5">, </span><span class="s1">x</span><span class="s5">, </span><span class="s1">first</span><span class="s5">, </span><span class="s1">last)</span><span class="s3">:</span><span class="s1"> 
+        </span><span class="s0">&quot;&quot;&quot; 
+        This is a simple implementation of selection sorting 
+ 
+        :param x: 
+        :param first: 
+        :param last: 
+        :return: 
+        &quot;&quot;&quot;</span><span class="s1"> 
+        </span><span class="s0"># print(x)</span><span class="s1"> 
+ 
+        self.FUNC_QUICK_SELECTION </span><span class="s3">+= </span><span class="s4">1</span><span class="s1"> 
+ 
+        </span><span class="s2">for </span><span class="s1">i </span><span class="s2">in </span><span class="s1">range(first</span><span class="s5">, </span><span class="s1">last)</span><span class="s3">:</span><span class="s1"> 
+            minIndex </span><span class="s3">= </span><span class="s1">i 
+            </span><span class="s2">for </span><span class="s1">j </span><span class="s2">in </span><span class="s1">range(i </span><span class="s3">+ </span><span class="s4">1</span><span class="s5">, </span><span class="s1">last </span><span class="s3">+ </span><span class="s4">1</span><span class="s1">)</span><span class="s3">:</span><span class="s1"> 
+                </span><span class="s2">if </span><span class="s1">x[j] </span><span class="s3">&lt; </span><span class="s1">x[minIndex]</span><span class="s3">:</span><span class="s1"> 
+                    minIndex </span><span class="s3">= </span><span class="s1">j 
+            </span><span class="s2">if </span><span class="s1">minIndex </span><span class="s3">!= </span><span class="s1">i</span><span class="s3">:</span><span class="s1"> 
+                x[i]</span><span class="s5">, </span><span class="s1">x[minIndex] </span><span class="s3">= </span><span class="s1">x[minIndex]</span><span class="s5">, </span><span class="s1">x[i] 
+        </span><span class="s2">return </span><span class="s1">x 
+ 
+</span><span class="s0">#================================</span><span class="s1"> 
+</span><span class="s0"># Now we test to see if it works!</span><span class="s1"> 
+</span><span class="s0">#================================</span><span class="s1"> 
+ 
+</span><span class="s2">if </span><span class="s1">__name__ </span><span class="s3">== </span><span class="s6">'__main__'</span><span class="s3">:</span><span class="s1"> 
+    </span><span class="s2">import </span><span class="s1">sys 
+ 
+    </span><span class="s2">if </span><span class="s1">len(sys.argv[</span><span class="s4">1</span><span class="s3">:</span><span class="s1">]) </span><span class="s3">&lt; </span><span class="s4">1</span><span class="s3">:</span><span class="s1"> 
+ 
+        print(</span><span class="s6">'using default size: [{}]'</span><span class="s1">.format(str(SIZE))) 
+        us </span><span class="s3">= </span><span class="s1">[random.randint(</span><span class="s4">0</span><span class="s5">,</span><span class="s1">SPAN) </span><span class="s2">for </span><span class="s1">a </span><span class="s2">in </span><span class="s1">range(</span><span class="s4">0</span><span class="s5">, </span><span class="s1">SIZE)] 
+        qs </span><span class="s3">= </span><span class="s1">QuickSort() 
+ 
+        start_time </span><span class="s3">= </span><span class="s1">time.time() 
+        qs.quick_sort(us) 
+        print(</span><span class="s6">'SIZE: {} Elapsed time: {} seconds'</span><span class="s1">.format(str(SIZE)</span><span class="s5">, </span><span class="s1">str(time.time() </span><span class="s3">- </span><span class="s1">start_time))) 
+        print(</span><span class="s6">'Selections: [{}] Sorts: [{}] Partitions: [{}]'</span><span class="s1">.format(str(qs.FUNC_QUICK_SELECTION)</span><span class="s5">,</span><span class="s1"> 
+                                                                     str(qs.SORTS)</span><span class="s5">,</span><span class="s1"> 
+                                                                     str(qs.PARTITIONS))) 
+    </span><span class="s2">else</span><span class="s3">:</span><span class="s1"> 
+ 
+        SIZE </span><span class="s3">= </span><span class="s1">int(sys.argv[</span><span class="s4">1</span><span class="s1">]) 
+ 
+        us </span><span class="s3">= </span><span class="s1">[random.randint(</span><span class="s4">0</span><span class="s5">, </span><span class="s1">SPAN) </span><span class="s2">for </span><span class="s1">a </span><span class="s2">in </span><span class="s1">range(</span><span class="s4">0</span><span class="s5">, </span><span class="s1">SIZE)] 
+        qs </span><span class="s3">= </span><span class="s1">QuickSort() 
+ 
+        start_time </span><span class="s3">= </span><span class="s1">time.time() 
+        qs.quick_sort(us) 
+ 
+        print(</span><span class="s6">'SIZE: [{}] Elapsed time: [{}] seconds'</span><span class="s1">.format(str(SIZE)</span><span class="s5">, </span><span class="s1">str(time.time() </span><span class="s3">- </span><span class="s1">start_time))) 
+        print(</span><span class="s6">'Selections: [{}] Sorts: [{}] Partitions: [{}]'</span><span class="s1">.format(str(qs.FUNC_QUICK_SELECTION)</span><span class="s5">,</span><span class="s1"> 
+                                                                     str(qs.SORTS)</span><span class="s5">,</span><span class="s1"> 
+                                                                     str(qs.PARTITIONS))) 
+ 
+ 
+</span></pre>
+</body>
+</html>
