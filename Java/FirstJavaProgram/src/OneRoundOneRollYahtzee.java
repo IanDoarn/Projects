@@ -72,6 +72,9 @@ public class OneRoundOneRollYahtzee
 
         println("The five rolls in non-decreasing order are: " + ProjectUtils.makeStringArray(globalArray));
 
+        selectionMenu();
+        getSelection();
+
     }
     private static void selectionMenu()
     {
@@ -111,5 +114,25 @@ public class OneRoundOneRollYahtzee
         int input = in.nextInt();
 
         return input;
+    }
+    private static void yahtzeeLogic(int selection)
+    {
+        /*
+            Determines which method of yahtzee logic
+            to use and if it is a legal choice.
+
+            displays the result of the choice
+         */
+    }
+
+    /**
+     * The following methods are the
+     * Yahtzee logic for determining the
+     * various win types.
+     */
+
+    private static void logicUpperSection(int[] array)
+    {
+
     }
 }
