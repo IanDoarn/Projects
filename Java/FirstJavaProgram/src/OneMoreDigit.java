@@ -48,7 +48,7 @@ public class OneMoreDigit
 
         if(input != "q")
         {
-            int randInt = ProjectUtils.generatRandomInteger(1, 10);
+            int randInt = ProjectUtils.generateRandomInteger(1, 10);
 
             if(input.length() > 0)
             {

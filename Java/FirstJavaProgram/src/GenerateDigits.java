@@ -47,13 +47,13 @@ public class GenerateDigits
         }
         else
         {
-            int initInt = ProjectUtils.generatRandomInteger(1, 100);
+            int initInt = ProjectUtils.generateRandomInteger(1, 100);
             int[] initArray = new int[] { initInt };
             println("Count: 1. Random integer: " + initInt + ". Digits so far in non-decreasing order: " + initInt);
 
             for(int i = 2; i < numOfIterations + 1; i++)
             {
-                int randInt = ProjectUtils.generatRandomInteger(1, 100);
+                int randInt = ProjectUtils.generateRandomInteger(1, 100);
                 initArray = ProjectUtils.insertIntoArray(initArray, randInt);
 
                 String sortedArray = ProjectUtils.makeStringArray(ProjectUtils.sortArray(initArray));

@@ -25,5 +25,10 @@
  scoring categories available in the sense that they are un-used.
 
  */
-public class OneRoundOneRollYahtzee {
+public class OneRoundOneRollYahtzee
+{
+    public static void main(String[] args)
+    {
+
+    }
 }

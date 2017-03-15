@@ -1,4 +1,14 @@
+/**
+ * Written by: Ian Doarn
+ *
+ * These are my helper methods that are used in
+ * the project. I have them in their own class
+ * So I can globally call them in the project.
+ */
+
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.*;
 
 
@@ -6,7 +16,7 @@ public class ProjectUtils
 {
     private static Random random = new Random();
     
-    public static int generatRandomInteger(int min, int max)
+    public static int generateRandomInteger(int min, int max)
     {
         return random.nextInt((max - min) + 1) + min;
     }
@@ -74,7 +84,7 @@ public class ProjectUtils
 
         for(int i = 0; i < size; i++)
         {
-            generatedArray[i] = generatRandomInteger(min, max);
+            generatedArray[i] = generateRandomInteger(min, max);
         }
 
         return generatedArray;
@@ -82,6 +92,10 @@ public class ProjectUtils
 
     public static boolean checkArrayLength(int[] array, int legalSize)
     {
+        /*
+            Check if an integer array is of a certian
+            length. returns a boolean.
+         */
         if(array.length != legalSize)
         {
             return false;
@@ -92,4 +106,62 @@ public class ProjectUtils
         }
         return false;
     }
+    public static int getMostCommonInt(int[] array) {
+
+        /*
+            Time complexity is: O(n log n)
+
+            Finds the most common element in
+            and integer array and returns it.
+            If the array is null or empty, then
+            0 is returned to indicate it is an
+            empty array.
+         */
+
+        // Determine if the array is empty or null
+        if (array == null || array.length == 0)
+        {
+            // since we are doing dice rolls, it is ok to return 0,
+            // since 0 will never be in the arrays.
+            return 0;
+        }
+
+
+        // Sort the array using our quick sort algorithm
+        // since we can use the built-in: Arrays.sort(array)
+        array = sortArray(array);
+
+        int previous = array[0];
+        int popular = array[0];
+        int count = 1;
+        int maxCount = 1;
+
+        //iterate the array
+        for (int i = 1; i < array.length; i++)
+        {
+            //if the previous element occurs again, increment its popularity by one.
+            if (array[i] == previous)
+            {
+                count++;
+            }
+            else
+            {
+
+                if (count > maxCount)
+                {
+                    popular = array[i-1];
+                    maxCount = count;
+                }
+                previous = array[i];
+                count = 1;
+            }
+        }
+
+        // if the current count is greater than the maxCount,
+        // return the array index of that count, otherwise,
+        // return the popular int
+        return count > maxCount ? array[array.length-1] : popular;
+
+    }
 }
+
