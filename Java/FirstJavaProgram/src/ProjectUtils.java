@@ -14,10 +14,21 @@ import java.util.*;
 
 public class ProjectUtils
 {
+    // create Random object
     private static Random random = new Random();
-    
+
+    public static void exit()
+    {
+        System.out.println("Have a nice day!");
+        System.exit(0);
+    }
+
     public static int generateRandomInteger(int min, int max)
     {
+        /*
+            Create a random number within the given range
+            and return it
+         */
         return random.nextInt((max - min) + 1) + min;
     }
 

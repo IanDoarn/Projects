@@ -24,16 +24,19 @@
  again he/she will be starting a new one-round game with all of the
  scoring categories available in the sense that they are un-used.
 
+ !!!!Helper Methods are located in the class ProjectUtils!!!!
+
  */
+import java.awt.print.PrinterJob;
 import java.util.Scanner;
 
 public class OneRoundOneRollYahtzee
 {
     // Create the Scanner
-    private static Scanner in = new Scanner();
+    private static Scanner in = new Scanner(System.in);
 
-    // Alias my ProjectUtils class
-    private static ProjectUtils utilities = new ProjectUtils();
+    // Create an integer array
+    public static int[] globalArray;
 
     // print helper methods because I got lazy and didn't want to type
     // System.out.print(); anymore
@@ -48,12 +51,65 @@ public class OneRoundOneRollYahtzee
 
     public static void main(String[] args)
     {
-        println("'Please enter 1) to roll your own dice, 2) to let the computer roll the dice, or 3) to quit:'");
+        println("Please enter 1) to roll your own dice, 2) to let the computer roll the dice, or 3) to quit:");
+        String input = in.nextLine();
+
+        // If the user enters 3, close the program
+        if(input == "3")
+        {
+            ProjectUtils.exit();
+        }
+        else if (input == "2")
+        {
+            globalArray = ProjectUtils.sortArray(ProjectUtils.generateIntArray(5, 1, 6));
+        }
+        else if (input == "1")
+        {
+            println("Please enter the five dice rolls:");
+            String inputArray = in.nextLine();
+            globalArray = ProjectUtils.sortArray(ProjectUtils.makeIntegerArray(inputArray));
+        }
+
+        println("The five rolls in non-decreasing order are: " + ProjectUtils.makeStringArray(globalArray));
+
+    }
+    private static void selectionMenu()
+    {
+        /*
+            Prints selection menu
+         */
+
+        String menu = "Upper Section:\n" +
+                "1. Aces\n" +
+                "2. Twos\n" +
+                "3. Threes\n" +
+                "4. Fours\n" +
+                "5. Fives\n" +
+                "6. Sixes\n" +
+                "Lower Section:\n" +
+                "7. Three Of A Kind\n" +
+                "8. Four Of A Kind\n" +
+                "9. Full House\n" +
+                "10. Small Straight\n" +
+                "11. Large Straight\n" +
+                "12. Yahtzee\n" +
+                "13. Chance\n";
+
+        println(menu);
     }
 
-    void exit()
+    private static int getSelection()
     {
+        /*
+            method for getting users selection
+            so it be called recursively if the selection
+            was not legal.
+         */
 
-        System.exit(0);
+
+        println("Please enter the number corresponding to your chosen category: ");
+        int input = in.nextInt();
+
+        return input;
     }
 }
