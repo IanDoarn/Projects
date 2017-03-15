@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b3e632b-ce6a-440c-b4a5-8efb2ddd1e9f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Java/FirstJavaProgram/.idea/workspace.xml" afterPath="$PROJECT_DIR$/Java/FirstJavaProgram/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Java/FirstJavaProgram/src/GenerateDigits.java" afterPath="$PROJECT_DIR$/Java/FirstJavaProgram/src/GenerateDigits.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Java/FirstJavaProgram/src/OneMoreDigit.java" afterPath="$PROJECT_DIR$/Java/FirstJavaProgram/src/OneMoreDigit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Java/FirstJavaProgram/src/OneRoundOneRollYahtzee.java" afterPath="$PROJECT_DIR$/Java/FirstJavaProgram/src/OneRoundOneRollYahtzee.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Java/FirstJavaProgram/src/ProjectUtils.java" afterPath="$PROJECT_DIR$/Java/FirstJavaProgram/src/ProjectUtils.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -99,8 +95,8 @@
       <file leaf-file-name="oneroundonerollyahtzee.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Python/school/oneroundonerollyahtzee.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2882">
-              <caret line="196" column="19" lean-forward="false" selection-start-line="196" selection-start-column="19" selection-end-line="196" selection-end-column="19" />
+            <state relative-caret-position="286">
+              <caret line="187" column="112" lean-forward="false" selection-start-line="187" selection-start-column="19" selection-end-line="187" selection-end-column="112" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -892,8 +888,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Python/school/oneroundonerollyahtzee.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2882">
-          <caret line="196" column="19" lean-forward="false" selection-start-line="196" selection-start-column="19" selection-end-line="196" selection-end-column="19" />
+        <state relative-caret-position="286">
+          <caret line="187" column="112" lean-forward="false" selection-start-line="187" selection-start-column="19" selection-end-line="187" selection-end-column="112" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>

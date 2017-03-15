@@ -23,6 +23,16 @@ public class ProjectUtils
 
     public static int[] makeIntegerArray(String userInput)
     {
+        /*
+            take given user input string and convert it to
+            an integer array. This is assuming the users input is
+            delimited by a space.
+
+            Example:
+
+                input: "1 2 3 4 5"
+                output: [1, 2, 3, 4, 5]
+         */
         String[] stringArray = userInput.split(" ");
         int[] intArray = new int[stringArray.length];
 
@@ -43,6 +53,15 @@ public class ProjectUtils
 
     public static String makeStringArray(int[] intArray)
     {
+        /*
+            Take a give array and transform it to a string
+            with a char delimiter of ' '
+
+            Example:
+
+            given array: {1, 2, 3, 4, 5}
+            output: "1 2 3 4 5"
+         */
         StringBuilder builder = new StringBuilder();
         for (int i : intArray) {
             builder.append(i);
@@ -54,6 +73,9 @@ public class ProjectUtils
 
     public static int[] insertIntoArray(int[] inputArray, int newInt)
     {
+        /*
+            Inserts an integer at the end of an array
+         */
         List<Integer> num = new ArrayList<>();
 
         for(int i = 0; i < inputArray.length; i++)
@@ -74,12 +96,22 @@ public class ProjectUtils
 
     public static int[] sortArray(int[] array)
     {
+        /*
+            use my quick sorting algorithm
+            to sort an array of integers and
+            return the sorted array
+         */
+
         QuickSort qs = new QuickSort();
         return qs.sort(array);
     }
 
     public static int[] generateIntArray(int size, int min, int max)
     {
+        /*
+            Randomly generate an array of certain size
+            with give integer range of min and max
+         */
         int[] generatedArray = new int[size];
 
         for(int i = 0; i < size; i++)
@@ -116,6 +148,15 @@ public class ProjectUtils
             If the array is null or empty, then
             0 is returned to indicate it is an
             empty array.
+
+            the given array does not need to be sorted,
+            it will automatically be sorted.
+
+            References used:
+
+            http://stackoverflow.com/questions/8545590/find-the-most-popular-element-in-int-array
+            http://stackoverflow.com/questions/3903651/most-common-values-in-an-array
+
          */
 
         // Determine if the array is empty or null
@@ -136,14 +177,16 @@ public class ProjectUtils
         int count = 1;
         int maxCount = 1;
 
-        //iterate the array
+        // iterate the array
         for (int i = 1; i < array.length; i++)
         {
-            //if the previous element occurs again, increment its popularity by one.
+            // if the previous element occurs again, increment its popularity by one.
             if (array[i] == previous)
             {
                 count++;
             }
+
+            // otherwise continue to the next element
             else
             {
 

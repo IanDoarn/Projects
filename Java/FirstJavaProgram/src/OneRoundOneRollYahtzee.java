@@ -25,10 +25,35 @@
  scoring categories available in the sense that they are un-used.
 
  */
+import java.util.Scanner;
+
 public class OneRoundOneRollYahtzee
 {
+    // Create the Scanner
+    private static Scanner in = new Scanner();
+
+    // Alias my ProjectUtils class
+    private static ProjectUtils utilities = new ProjectUtils();
+
+    // print helper methods because I got lazy and didn't want to type
+    // System.out.print(); anymore
+    private static void print(String text)
+    {
+        System.out.print(text);
+    }
+    private static void println(String text)
+    {
+        System.out.println(text);
+    }
+
     public static void main(String[] args)
     {
+        println("'Please enter 1) to roll your own dice, 2) to let the computer roll the dice, or 3) to quit:'");
+    }
 
+    void exit()
+    {
+
+        System.exit(0);
     }
 }
