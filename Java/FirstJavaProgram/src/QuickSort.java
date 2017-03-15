@@ -6,19 +6,22 @@
  *  Worst case time space
  *  O(n^2)
  *
- *  Wrttien by: Ian Doarn
+ *  Written by: Ian Doarn
  *
  *  References:
  *  http://www.java2novice.com/java-sorting-algorithms/quick-sort/
  *
  */
 
-public class QuickSort {
+public class QuickSort
+{
     private int[] array;
     private int length;
 
-    public int[] sort(int[] inputArr) {
-        if (inputArr == null || inputArr.length == 0) {
+    public int[] sort(int[] inputArr)
+    {
+        if (inputArr == null || inputArr.length == 0)
+        {
             return null;
         }
         this.array = inputArr;
@@ -27,20 +30,24 @@ public class QuickSort {
         return this.array;
     }
 
-    private void quickSort(int lowerIndex, int higherIndex) {
+    private void quickSort(int lowerIndex, int higherIndex)
+    {
         int i = lowerIndex;
         int j = higherIndex;
 
         // Calculate the pivot number from the array, generally is the middle number
         int pivot = array[lowerIndex + (higherIndex - lowerIndex) / 2];
 
-        while (i <= j) {
+        while (i <= j)
+        {
             /**
+             * Partitioning:
+             *
+             *
              * In each iteration, we will identify a number from left side which
              * is greater then the pivot value, and also we will identify a number
              * from right side which is less then the pivot value. Once the search
              * is done, then we exchange both numbers.
-             * - See more at: http://www.java2novice.com/java-sorting-algorithms/quick-sort/#sthash.T4o1aqcU.dpuf
              */
 
             while (array[i] < pivot)

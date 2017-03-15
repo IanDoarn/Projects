@@ -1,6 +1,25 @@
 /**
- * Written By: Ian Doarn
- * Java Environment: 1.7 or 1.8
+ * Write a class called OneMoreDigit.
+
+ The program should prompt the user to enter a string consisting of zero or more
+ digits in non-decreasing order separated by spaces – be sure to read this in as
+ a single string.  Non-decreasing order means “sorted” with duplicates allowed.
+ For example, the user might enter the string “2 2 5 8” (of course the user does
+ not type the quotes).  Or the user might enter the empty string (by simply pressing
+ the “enter” key at the prompt) since he/she was prompted to enter “zero or more
+ digits in non-decreasing order.”  Also, the user can enter the letter q by itself
+ to quit the program.
+ Next, your program should generate a random digit and inform the user what digit
+ was generated.  For example, if the random digit was a 5 then program might display
+ “The following digit was randomly generated at great expense: 5”.
+ Next, the program should construct a string identical to the string that the user
+ entered but with the randomly-generated digit inserted into a correct position so
+ that the resulting string is still in non-decreasing order.  For example, if the
+ user entered “2 2 5 8” and the randomly-generated digit was 5, then the new string
+ should be “2 2 5 5 8”.  Of course if the user entered the empty string and the
+ randomly-generated digit was 7, then the new string would just be “7”.
+ The program should output the new string.
+
  */
 
 import java.util.*;
@@ -8,7 +27,6 @@ import java.util.*;
 public class OneMoreDigit
 {
     private static Scanner in = new Scanner(System.in);
-    private static Random random = new Random();
 
     /**
      * I got sick of typing this shit
@@ -25,41 +43,33 @@ public class OneMoreDigit
 
     public static void main(String[] args)
     {
-        print("Please enter zero or more digits in non-decreasing order (or q to quit):");
-        String input = in.next();
+        println("Please enter zero or more digits in non-decreasing order (or q to quit):");
+        String input = in.nextLine();
 
-        switch(input)
+        if(input != "q")
         {
-            case "q":
-                System.out.print("Have a nice a day!");
-                System.exit(0);
-                break;
-            case "":
-                int randInteger = randInt(1, 10);
-                println("The following digit was randomly generated at great expense:" + randInteger);
-                println("Here is the new sequence including the random digit:" + randInteger);
-            default:
-                run(input);
+            int randInt = ProjectUtils.generatRandomInteger(1, 10);
+
+            if(input.length() > 0)
+            {
+                int[] array = ProjectUtils.insertIntoArray(ProjectUtils.makeIntegerArray(input), randInt);
+                int[] sortedArray = ProjectUtils.sortArray(array);
+                String sortedArrayAsString = ProjectUtils.makeStringArray(sortedArray);
+
+                println("The following digit was randomly generated at great expense: " + randInt);
+                println("Here is the new sequence including the random digit: " + sortedArrayAsString);
+            }
+            else
+            {
+                println("The following digit was randomly generated at great expense: " + randInt);
+                println("Here is the new sequence including the random digit: " + randInt);
+            }
+
         }
-    }
-
-    private static int randInt(int min, int max)
-    {
-        int n = random.nextInt((max - min) + 1) + min;
-        return n;
-    }
-
-    private static void run(String userInput)
-    {
-        int randInteger = randInt(1, 10);
-        int[] temp = ProjectUtils.makeIntegerArray(userInput);
-        int[] array = ProjectUtils.insertIntoArray(temp, randInteger);
-        int[] sortedArray = ProjectUtils.sortArray(array);
-        String stringedArray = ProjectUtils.makeStringArray(sortedArray);
-
-        println("The following digit was randomly generated at great expense:" + randInteger);
-        println("Here is the new sequence including the random digit:" + stringedArray);
-
+        else
+        {
+            print("Have a nice day!");
+        }
 
     }
 }

@@ -1,10 +1,7 @@
-/**
- * Created by doarni on 3/14/2017.
- */
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.*;
+
+
 public class ProjectUtils
 {
     private static Random random = new Random();
@@ -13,6 +10,7 @@ public class ProjectUtils
     {
         return random.nextInt((max - min) + 1) + min;
     }
+
     public static int[] makeIntegerArray(String userInput)
     {
         String[] stringArray = userInput.split(" ");
