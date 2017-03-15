@@ -67,4 +67,29 @@ public class ProjectUtils
         QuickSort qs = new QuickSort();
         return qs.sort(array);
     }
+
+    public static int[] generateIntArray(int size, int min, int max)
+    {
+        int[] generatedArray = new int[size];
+
+        for(int i = 0; i < size; i++)
+        {
+            generatedArray[i] = generatRandomInteger(min, max);
+        }
+
+        return generatedArray;
+    }
+
+    public static boolean checkArrayLength(int[] array, int legalSize)
+    {
+        if(array.length != legalSize)
+        {
+            return false;
+        }
+        else if (array.length == legalSize)
+        {
+            return true;
+        }
+        return false;
+    }
 }
