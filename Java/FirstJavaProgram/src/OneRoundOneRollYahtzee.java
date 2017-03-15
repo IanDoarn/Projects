@@ -27,7 +27,8 @@
  !!!!Helper Methods are located in the class ProjectUtils!!!!
 
  */
-import java.awt.print.PrinterJob;
+
+import javax.print.event.PrintJobEvent;
 import java.util.Scanner;
 
 public class OneRoundOneRollYahtzee
@@ -38,7 +39,8 @@ public class OneRoundOneRollYahtzee
     // Create an integer array
     public static int[] globalArray;
 
-    // print helper methods because I got lazy and didn't want to type
+    // print helper methods because I got
+    // lazy and didn't want to type
     // System.out.print(); anymore
     private static void print(String text)
     {
@@ -52,28 +54,36 @@ public class OneRoundOneRollYahtzee
     public static void main(String[] args)
     {
         println("Please enter 1) to roll your own dice, 2) to let the computer roll the dice, or 3) to quit:");
-        String input = in.nextLine();
+        int input = in.nextInt();
 
         // If the user enters 3, close the program
-        if(input == "3")
+        if(input == 3)
         {
             ProjectUtils.exit();
         }
-        else if (input == "2")
+        // If 2, generate random array
+        else if (input == 2)
         {
-            globalArray = ProjectUtils.sortArray(ProjectUtils.generateIntArray(5, 1, 6));
+            int[] array = ProjectUtils.sortArray(ProjectUtils.generateIntArray(5, 1, 6));
+            globalArray = array;
         }
-        else if (input == "1")
+        // If 1, get user to type value for array
+        else if (input == 1)
         {
             println("Please enter the five dice rolls:");
             String inputArray = in.nextLine();
-            globalArray = ProjectUtils.sortArray(ProjectUtils.makeIntegerArray(inputArray));
+            int[] array = ProjectUtils.sortArray(ProjectUtils.makeIntegerArray(inputArray));
+            globalArray = array;
         }
 
+        // Print the array
         println("The five rolls in non-decreasing order are: " + ProjectUtils.makeStringArray(globalArray));
 
+        // Print selection menu
         selectionMenu();
-        getSelection();
+
+        // User logic to determine score and print result
+        println(yahtzeeLogic(getSelection(), globalArray));
 
     }
     private static void selectionMenu()
@@ -110,12 +120,12 @@ public class OneRoundOneRollYahtzee
          */
 
 
-        println("Please enter the number corresponding to your chosen category: ");
+        print("Please enter the number corresponding to your chosen category: ");
         int input = in.nextInt();
 
         return input;
     }
-    private static void yahtzeeLogic(int selection)
+    private static String yahtzeeLogic(int __selection, int[] array)
     {
         /*
             Determines which method of yahtzee logic
@@ -123,16 +133,134 @@ public class OneRoundOneRollYahtzee
 
             displays the result of the choice
          */
+
+        Logic yahtzee = new Logic();
+        return yahtzee.main(__selection, array);
     }
 
-    /**
-     * The following methods are the
-     * Yahtzee logic for determining the
-     * various win types.
-     */
 
-    private static void logicUpperSection(int[] array)
+
+    private static class Logic
     {
+        /**
+         * This class is the
+         * Yahtzee logic for
+         * determining the
+         * various win types.
+         *
+         */
 
+        String main(int selection, int[] array)
+        {
+            int[] upperSelection = new int[] { 1, 2, 3, 4, 5, 6 };
+            int[] lowerSelection = new int[] { 7, 8, 9, 10, 11, 12, 13 };
+
+            // Determine if selection is in upper set
+            for(int x:upperSelection)
+            {
+                if (x == selection)
+                {
+                    // return score
+                    return upperSection(selection, array);
+                }
+            }
+
+            // Determine if selection is in lower set
+            for(int x:lowerSelection)
+            {
+                if (x == selection)
+                {
+                    // return score
+                    return lowerSection(selection, array);
+                }
+            }
+
+            // If all else fails
+            return null;
+        }
+
+        private String upperLogic(int[] array, int value, String categoryName)
+        {
+            /*
+                Determines logic for Upper Section
+             */
+
+            // Set category name
+            String category = categoryName;
+            // Make current array into a string
+            String rollAsString = ProjectUtils.makeStringArray(array);
+
+            if(ProjectUtils.checkElementInArray(value, array))
+            {
+                // Get the sum of dice with value of 1
+                int sum = ProjectUtils.getElementCount(array, value);
+                return "Your score for the " + category + " category is: " + sum;
+            }
+
+            //Selection was illegal for roll
+            
+            return "The " + category + " category is not legal for this roll:" + rollAsString;
+
+        }
+
+        public String upperSection(int selection, int[] array)
+        {
+            /*
+                Upper Section:
+                1. Aces
+                2. Twos
+                3. Threes
+                4. Fours
+                5. Fives
+                6. Sixes
+             */
+
+            switch(selection)
+            {
+                // Aces
+                case 1:
+                    return upperLogic(array, 1, "Aces");
+
+                // Twos
+                case 2:
+                    return upperLogic(array, 2, "Twos");
+
+                // Threes
+                case 3:
+                    return upperLogic(array, 3, "Threes");
+
+                // Fours
+                case 4:
+                    return upperLogic(array, 4, "Fours");
+
+                // Fives
+                case 5:
+                    return upperLogic(array, 5, "Fives");
+
+                // Sixes
+                case 6:
+                    return upperLogic(array, 6, "Sixes");
+            }
+
+            // If all else fails
+            // but hopefully not
+            return null;
+        }
+
+        public String lowerSection(int selection, int[] array)
+        {
+            /*
+                Lower Section:
+                7. Three Of A Kind
+                8. Four Of A Kind
+                9. Full House
+                10. Small Straight
+                11. Large Straight
+                12. Yahtzee
+                13. Chance
+             */
+
+            return null;
+        }
     }
 }

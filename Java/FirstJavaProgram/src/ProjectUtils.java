@@ -149,7 +149,56 @@ public class ProjectUtils
         }
         return false;
     }
-    public static int getMostCommonInt(int[] array) {
+
+    public static boolean checkElementInArray(int element, int[] intArray)
+    {
+        /*
+            Simply used to check if a number
+            exists in an int array
+            returns a boolean
+         */
+
+        for(int i = 0; i < intArray.length; i++)
+        {
+            // if the number we are looking for is in the array
+            // return true
+            if(i == element) { return true; }
+        }
+
+        // If the program reaches this point
+        // the number wasn't found in the array
+        return false;
+    }
+
+    public static int getElementCount(int[] array, int element)
+    {
+        /*
+            Gets the number of times
+            an element occurs in an array
+         */
+
+        int count = 0;
+
+        // Determine if array is empty or null
+        if(array == null || array.length == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            // iterate array
+            for (int i = 0; i < array.length; i++)
+            {
+                if (array[i] == element)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+    }
+    public static int getMostCommonInt(int[] array)
+    {
 
         /*
             Time complexity is: O(n log n)
