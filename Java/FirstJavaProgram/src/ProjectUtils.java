@@ -142,11 +142,57 @@ public class ProjectUtils
         return generatedArray;
     }
 
-    //TODO: implement regex to find matches in string arrays
+    public static int sumArray(int[] intArray)
+    {
+        /*
+            Sum all values in int array
+         */
+        int sum = 0;
 
-    //TODO: implement these methods
-    //TODO: checkElementsInArray(int[] elements, int[] intArray) { };
-    //TODO: getElementCount(int element, int[] intArray) { };
+        for(int i = 0; i < intArray.length; i++ )
+        {
+            sum += intArray[i];
+        }
+
+        return sum;
+    }
+
+    public static HashMap<Integer, Integer> getElementCounts(int[] intArray)
+    {
+        /*
+            Builds a HashMap of each value in the array
+            by assigning each value as the key, and the
+            number of times it occurs in the array as
+            the value
+
+            since the array is iterated once, this
+            is very efficient
+         */
+
+        // Create a HashMap object
+        HashMap<Integer, Integer> intMap = new HashMap<>();
+
+        // iterate the array
+        for(int i = 0; i < intArray.length; i++)
+        {
+            // check if the current array value
+            // is a key in the HashMap, if it is,
+            // increase it's key value by one,
+            // otherwise put it in the HashMap
+            // and then assign it a value of one
+
+            if(intMap.get(intArray[i]) != null)
+            {
+                intMap.put(intArray[i], intMap.get(intArray[i]) + 1);
+            }
+            else
+            {
+                intMap.put(intArray[i], 1);
+            }
+        }
+
+        return intMap;
+    }
 
     public static boolean checkArrayLength(int[] array, int legalSize)
     {

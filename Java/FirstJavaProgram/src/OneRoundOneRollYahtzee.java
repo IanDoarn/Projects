@@ -28,7 +28,7 @@
 
  */
 
-import java.util.Scanner;
+import java.util.*;
 
 public class OneRoundOneRollYahtzee
 {
@@ -120,9 +120,7 @@ public class OneRoundOneRollYahtzee
 
 
         print("Please enter the number corresponding to your chosen category: ");
-        int input = in.nextInt();
-
-        return input;
+        return in.nextInt();
     }
     private static String yahtzeeLogic(int __selection, int[] array)
     {
@@ -184,24 +182,22 @@ public class OneRoundOneRollYahtzee
                 Determines logic for Upper Section
              */
 
-            // Set category name
-            String category = categoryName;
             // Make current array into a string
             String rollAsString = ProjectUtils.makeStringArray(array);
-
+            
             if(ProjectUtils.checkElementInArray(value, array))
             {
                 // Get the sum of dice with value of 1
                 int sum = ProjectUtils.getElementCount(array, value);
-                return "Your score for the " + category + " category is: " + sum;
+                return "Your score for the " + categoryName + " category is: " + sum;
             }
 
             //Selection was illegal for roll
-            return "The " + category + " category is not legal for this roll:" + rollAsString;
+            return "The " + categoryName + " category is not legal for this roll:" + rollAsString;
 
         }
 
-        public String upperSection(int selection, int[] array)
+        private String upperSection(int selection, int[] array)
         {
             /*
                 Upper Section:
@@ -212,14 +208,6 @@ public class OneRoundOneRollYahtzee
                 5. Fives
                 6. Sixes
              */
-
-            if(!(selection > 0 && selection >= 6))
-            {
-                // Selection type not valid
-                // Recall the function
-                println("Invalid selection type: " + selection);
-                println(yahtzeeLogic(getSelection(), globalArray));
-            }
 
             switch(selection)
             {
@@ -253,7 +241,7 @@ public class OneRoundOneRollYahtzee
             return null;
         }
 
-        public String lowerSection(int selection, int[] array)
+        private String lowerSection(int selection, int[] array)
         {
             /*
                 Lower Section:
@@ -266,19 +254,11 @@ public class OneRoundOneRollYahtzee
                 13. Chance
              */
 
-            if(!(selection > 6 && selection >= 13))
-            {
-                // Selection type not valid
-                // Recall the function
-                println("Invalid selection type: " + selection);
-                println(yahtzeeLogic(getSelection(), globalArray));
-            }
-
             switch(selection)
             {
                 // Three Of A Kind
                 case 7:
-                    break;
+                    return threeOfAKind(array);
 
                 // Four Of A Kind
                 case 8:
@@ -306,6 +286,33 @@ public class OneRoundOneRollYahtzee
             }
 
             return null;
+        }
+
+        private String threeOfAKind(int[] intArray)
+        {
+            /*
+                Find if there are 3 elements of
+                the same value exist in the array
+             */
+
+            // Create a map of the array
+            HashMap<Integer, Integer> map = new HashMap<>();
+
+            // Get the most common element in the array
+            int mostCommonElement = ProjectUtils.getMostCommonInt(intArray);
+
+            // If the most common element occurs 3 times
+            // Then we have 3 of a kind
+            if(map.containsKey(mostCommonElement))
+            {
+                if(map.get(mostCommonElement) == 3)
+                {
+                    return "Your score for the Three Of A Kind category is:" + ProjectUtils.sumArray(intArray);
+                }
+            }
+
+            String rollAsString = ProjectUtils.makeStringArray(intArray);
+            return "The Three Of A Kind category is not legal for this roll: " + rollAsString;
         }
     }
 }
