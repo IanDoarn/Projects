@@ -12,6 +12,9 @@ import java.util.Arrays;
 import java.util.*;
 
 
+
+//TODO: clean up some of this to make it faster
+
 public class ProjectUtils
 {
     // create Random object
@@ -138,6 +141,12 @@ public class ProjectUtils
 
         return generatedArray;
     }
+
+    //TODO: implement regex to find matches in string arrays
+
+    //TODO: implement these methods
+    //TODO: checkElementsInArray(int[] elements, int[] intArray) { };
+    //TODO: getElementCount(int element, int[] intArray) { };
 
     public static boolean checkArrayLength(int[] array, int legalSize)
     {
@@ -270,6 +279,7 @@ public class ProjectUtils
         // if the current count is greater than the maxCount,
         // return the array index of that count, otherwise,
         // return the popular int
+        // See I know how to use the ternary operator....
         return count > maxCount ? array[array.length-1] : popular;
 
     }
