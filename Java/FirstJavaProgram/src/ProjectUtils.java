@@ -92,6 +92,25 @@ public class ProjectUtils
         return text;
     }
 
+    public static boolean parseString(String string, String substring)
+    {
+        /*
+            Find if substring is in main string
+         */
+
+        // Split string on " "
+        String[] stringArray = string.split(" ");
+
+        for(int i = 0; i < stringArray.length; i++)
+        {
+            // If we find the substring in the stringArray
+            if(substring == stringArray[i]) { return true; }
+        }
+
+        // We couldn't find it
+        return false;
+    }
+
     public static String formatStringArray(String userInput)
     {
         /*
@@ -411,9 +430,9 @@ public class ProjectUtils
 
         // Make sure sequence size is not greater than
         // 5, since we will only have 5 values
-        if(sequenceSize > 5)
+        if(sequenceSize > 5 || !(checkArrayLength(array, 5)))
         {
-            System.out.println("Sequence size to large. Exiting");
+            System.out.println("Sequence / Array size to large. Exiting");
             exit();
         }
 
@@ -423,13 +442,13 @@ public class ProjectUtils
         {
             // If the current number is less that the next number
             // and if the next number is the current number
-            if((array[i] < array[i + 1]) && (array[i + 1] == array[i] + 1 ))
+            if(array[i] <= array[i + 1] && array[i + 1] == array[i] + 1 )
             {
-                if(matches != sequenceSize)
+                if(matches < sequenceSize)
                 {
                     matches++;
                 }
-                else if (matches == sequenceSize)
+                else if (matches >= sequenceSize)
                 {
                     return true;
                 }

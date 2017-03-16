@@ -26,6 +26,9 @@
 
  !!!!Helper Methods are located in the class ProjectUtils!!!!
 
+
+ * Written by: Ian Doarn
+
  */
 
 import java.util.*;
@@ -84,8 +87,8 @@ public class OneRoundOneRollYahtzee
         // Print selection menu
         selectionMenu();
 
-        // User logic to determine score and print result
-        println(yahtzeeLogic(getSelection(), globalArray));
+        // Main Logic
+        getSelection();
 
     }
     private static void selectionMenu()
@@ -113,7 +116,7 @@ public class OneRoundOneRollYahtzee
         println(menu);
     }
 
-    private static int getSelection()
+    private static void getSelection()
     {
         /*
             method for getting users selection
@@ -122,8 +125,28 @@ public class OneRoundOneRollYahtzee
          */
 
 
+        // User logic to determine score and print result
         print("Please enter the number corresponding to your chosen category: ");
-        return in.nextInt();
+
+        String result = yahtzeeLogic(in.nextInt(), globalArray);
+
+        // Did I win?
+        // Crude way of making sure "is not legal" is not in
+        // the results string
+        if(!ProjectUtils.parseString(result, "legal"))
+        {
+            // Yes you won
+            // Selection was legal
+            println(result);
+
+            // Close the program
+            System.exit(0);
+        }
+
+        // No you picked the wrong thing...
+        // Selection was illegal so call the method again
+        getSelection();
+
     }
     private static String yahtzeeLogic(int __selection, int[] array)
     {
@@ -150,10 +173,15 @@ public class OneRoundOneRollYahtzee
          *
          */
 
+        private static String rollAsString = "";
+
         String main(int selection, int[] array)
         {
             int[] upperSelection = new int[] { 1, 2, 3, 4, 5, 6 };
             int[] lowerSelection = new int[] { 7, 8, 9, 10, 11, 12, 13 };
+
+            //Set the array the the global string
+            rollAsString = ProjectUtils.makeStringArray(array);
 
             // Determine if selection is in upper set
             for(int x:upperSelection)
@@ -245,7 +273,7 @@ public class OneRoundOneRollYahtzee
 
             // If all else fails
             // but hopefully not
-            return null;
+            return "Selection " + selection + " not a legal selection.";
         }
 
         private String lowerSection(int selection, int[] array)
@@ -277,11 +305,11 @@ public class OneRoundOneRollYahtzee
 
                 // Small Straight
                 case 10:
-                    break;
+                    return straight(array, 4, "Small", 30);
 
                 // Large Straight
                 case 11:
-                    break;
+                    return straight(array, 5, "Large", 40);
 
                 // Yahtzee
                 case 12:
@@ -289,10 +317,12 @@ public class OneRoundOneRollYahtzee
 
                 // Chance
                 case 13:
-                    break;
+                    return chance(array);
             }
 
-            return null;
+            // If all else fails, i.e. they can't read
+            // but hopefully not
+            return "Selection " + selection + " not a legal selection.";
         }
 
         private String numberOfAKind(int[] intArray, int valueToFind, String categoryName)
@@ -323,7 +353,6 @@ public class OneRoundOneRollYahtzee
             }
 
             // There are not three values of the same number
-            String rollAsString = ProjectUtils.makeStringArray(intArray);
             return "The " + categoryName + " category is not legal for this roll: " + rollAsString;
         }
 
@@ -362,8 +391,72 @@ public class OneRoundOneRollYahtzee
             }
 
             // If we reach this point, there were not enough matches
-            String rollAsString = ProjectUtils.makeStringArray(intArray);
             return "The Full House category is not legal for this roll: " + rollAsString;
+        }
+
+        private String straight(int[] intArray, int sequenceSize, String straightName, int score)
+        {
+            /*
+                Small Straight and Large Straight
+
+                Uses findSequenceInArray to find a sequence of sequenceSize,
+                and determines if it is legal.
+             */
+            if(ProjectUtils.findSequenceInArray(intArray, sequenceSize))
+            {
+                return "Your score for the " + straightName + " Straight category is: " + score;
+            }
+
+            // If we reach this point, there was no sequence found
+            return "The " + straightName + " Straight category is not legal for this roll: " + rollAsString;
+        }
+
+        //Chance the Rapper?
+        private String chance(int[] intArray)
+        {
+            /*
+                Chance
+
+                Sum the array and return it
+             */
+
+            // Literally the only reason this would fail is if it someone
+            // got all the way here and is over / under the legal size...
+            if(ProjectUtils.checkArrayLength(intArray, 5))
+            {
+                return "Your score for the Chance category is: " + ProjectUtils.sumArray(intArray);
+            }
+
+            // Somehow if you manage to end up here..
+            return "The Chance category is not legal for this roll: " + rollAsString;
+
+        }
+
+        private String yahtzee(int[] intArray)
+        {
+            /*
+                Yahtzee!
+
+                Checks to see if all elements in the
+                array are the same
+             */
+
+            // Make our HashMap object
+            HashMap<Integer, Integer> map = ProjectUtils.getElementCounts(intArray);
+
+            // See if the most common element has a value of 5
+            // since there can only be 5 elements.
+
+            int mostCommonElement = ProjectUtils.getMostCommonInt(intArray);
+
+            if(map.get(mostCommonElement) == 5)
+            {
+                return "Your score for the Yahtzee category is: 50";
+            }
+
+            // If the most common element does not have a value of 5
+            // it doesn't occur 5 times
+            return "The Yahtzee category is not legal for this roll: " + rollAsString;
         }
     }
 }
