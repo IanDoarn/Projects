@@ -28,7 +28,6 @@
 
  */
 
-import javax.print.event.PrintJobEvent;
 import java.util.Scanner;
 
 public class OneRoundOneRollYahtzee
@@ -198,7 +197,6 @@ public class OneRoundOneRollYahtzee
             }
 
             //Selection was illegal for roll
-            
             return "The " + category + " category is not legal for this roll:" + rollAsString;
 
         }
@@ -214,6 +212,14 @@ public class OneRoundOneRollYahtzee
                 5. Fives
                 6. Sixes
              */
+
+            if(!(selection > 0 && selection >= 6))
+            {
+                // Selection type not valid
+                // Recall the function
+                println("Invalid selection type: " + selection);
+                println(yahtzeeLogic(getSelection(), globalArray));
+            }
 
             switch(selection)
             {
@@ -259,6 +265,45 @@ public class OneRoundOneRollYahtzee
                 12. Yahtzee
                 13. Chance
              */
+
+            if(!(selection > 6 && selection >= 13))
+            {
+                // Selection type not valid
+                // Recall the function
+                println("Invalid selection type: " + selection);
+                println(yahtzeeLogic(getSelection(), globalArray));
+            }
+
+            switch(selection)
+            {
+                // Three Of A Kind
+                case 7:
+                    break;
+
+                // Four Of A Kind
+                case 8:
+                    break;
+
+                // Full House
+                case 9:
+                    break;
+
+                // Small Straight
+                case 10:
+                    break;
+
+                // Large Straight
+                case 11:
+                    break;
+
+                // Yahtzee
+                case 12:
+                    break;
+
+                // Chance
+                case 13:
+                    break;
+            }
 
             return null;
         }

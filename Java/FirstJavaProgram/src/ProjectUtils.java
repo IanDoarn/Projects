@@ -17,6 +17,12 @@ public class ProjectUtils
     // create Random object
     private static Random random = new Random();
 
+    public static void main(String[] args)
+    {
+        //NOTE: This is a place holder in case I need to test something
+
+    }
+
     public static void exit()
     {
         System.out.println("Have a nice day!");
@@ -169,6 +175,7 @@ public class ProjectUtils
         // the number wasn't found in the array
         return false;
     }
+
 
     public static int getElementCount(int[] array, int element)
     {
