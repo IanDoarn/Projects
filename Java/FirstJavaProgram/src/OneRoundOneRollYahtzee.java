@@ -204,7 +204,7 @@ public class OneRoundOneRollYahtzee
             }
 
             // If all else fails
-            return null;
+            return "Selection " + selection + " not a legal selection. It is not a known selection.";
         }
 
         private String upperLogic(int[] array, int value, String categoryName)

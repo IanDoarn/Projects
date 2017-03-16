@@ -10,6 +10,9 @@
  construct a string consisting of the digits generated so
  far in non-decreasing order separated by spaces, and then
  output the string.
+
+ !!!!Helper Methods are located in the class ProjectUtils!!!!
+
  */
 
 import java.util.Scanner;
@@ -35,27 +38,42 @@ public class GenerateDigits
     {
         print("Please enter the number of digits to generate (or 0 to exit):");
         int inputInt = in.nextInt();
+
+        // Main logic
         generator(inputInt);
 
     }
 
     private static void generator(int numOfIterations)
     {
+        /*
+            Generates random numbers for a give number
+            of times.
+         */
         if(numOfIterations == 0)
         {
             print("Have a nice day!");
         }
         else
         {
+            // Initial int to create the array with
             int initInt = ProjectUtils.generateRandomInteger(1, 100);
             int[] initArray = new int[] { initInt };
+
             println("Count: 1. Random integer: " + initInt + ". Digits so far in non-decreasing order: " + initInt);
 
+            // Iterate a number of times, adding the random ints
+            // to the array and print the new sorted array
+            // each time
             for(int i = 2; i < numOfIterations + 1; i++)
             {
+                // Make a random int
                 int randInt = ProjectUtils.generateRandomInteger(1, 100);
+
+                // Add it to the array
                 initArray = ProjectUtils.insertIntoArray(initArray, randInt);
 
+                // Sort it, make it a string and print
                 String sortedArray = ProjectUtils.makeStringArray(ProjectUtils.sortArray(initArray));
                 println("Count: " + i + ". Random integer: " + randInt + ". Digits so far in non-decreasing order: " + sortedArray);
             }

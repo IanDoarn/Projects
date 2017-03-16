@@ -20,6 +20,10 @@
  randomly-generated digit was 7, then the new string would just be “7”.
  The program should output the new string.
 
+
+ !!!!Helper Methods are located in the class ProjectUtils!!!!
+
+
  */
 
 import java.util.*;
@@ -46,30 +50,37 @@ public class OneMoreDigit
         println("Please enter zero or more digits in non-decreasing order (or q to quit):");
         String input = in.nextLine();
 
-        if(input != "q")
+        // They choose to exit
+        if(input.contains("q"))
         {
-            int randInt = ProjectUtils.generateRandomInteger(1, 10);
+            ProjectUtils.exit();
+        }
 
-            if(input.length() > 0)
-            {
-                int[] array = ProjectUtils.insertIntoArray(ProjectUtils.makeIntegerArray(input), randInt);
-                int[] sortedArray = ProjectUtils.sortArray(array);
-                String sortedArrayAsString = ProjectUtils.makeStringArray(sortedArray);
+        // Generate a random int
+        int randInt = ProjectUtils.generateRandomInteger(1, 10);
 
-                println("The following digit was randomly generated at great expense: " + randInt);
-                println("Here is the new sequence including the random digit: " + sortedArrayAsString);
-            }
-            else
-            {
-                println("The following digit was randomly generated at great expense: " + randInt);
-                println("Here is the new sequence including the random digit: " + randInt);
-            }
+        // If they typed some stuff
+        if(input.length() > 0)
+        {
+            // Create an array from the give string
+            int[] array = ProjectUtils.insertIntoArray(ProjectUtils.makeIntegerArray(input), randInt);
 
+            // Sort that shit
+            int[] sortedArray = ProjectUtils.sortArray(array);
+            String sortedArrayAsString = ProjectUtils.makeStringArray(sortedArray);
+
+            // Print that shit
+            println("The following digit was randomly generated at great expense: " + randInt);
+            println("Here is the new sequence including the random digit: " + sortedArrayAsString);
         }
         else
         {
-            print("Have a nice day!");
+            // They didn't type anything
+            // So just print the random int that was generated
+            println("The following digit was randomly generated at great expense: " + randInt);
+            println("Here is the new sequence including the random digit: " + randInt);
         }
+
 
     }
 }

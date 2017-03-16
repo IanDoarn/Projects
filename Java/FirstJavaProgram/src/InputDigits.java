@@ -7,6 +7,9 @@
  The program should construct a string with the digits in
  non-decreasing order separated by spaces.
  Finally the program should output the constructed string.
+
+ !!!!Helper Methods are located in the class ProjectUtils!!!!
+
  */
 
 import java.util.Scanner;
@@ -35,22 +38,29 @@ public class InputDigits
         println("Please enter zero or more digits (or q to quit):");
         String input = in.nextLine();
 
+        // If they typed q, exit
         if(input.contains("q"))
         {
-            println("Have a nice day!");
-            System.exit(0);
+            ProjectUtils.exit();
         }
         else
         {
+            // create the array
             int[] array;
+
+            // Create an empty string
             String arrayString = "";
 
+            // As long as the input isn't 0
             if(input.length() > 0)
             {
+                // Make the array an int array
+                // sort it, then convert it to a string
                 array = ProjectUtils.sortArray(ProjectUtils.makeIntegerArray(input));
                 arrayString = ProjectUtils.makeStringArray(array);
             }
 
+            // Print the array, or nothing it the input was nothing
             print("Here are the digits in non-decreasing order: " + arrayString);
         }
     }

@@ -12,6 +12,9 @@
  Next, regardless of the user’s preference, display the 5 digits
  (representing 5 dice rolls) in non-decreasing order.
 
+ !!!!Helper Methods are located in the class ProjectUtils!!!!
+
+
  *Here is an example run of the program.
 
  Please enter 1) to roll your own dice, 2) to let the computer roll the dice, or 3) to quit: 1
@@ -49,30 +52,46 @@ public class InputOrGenerateDiceRolls
         print("Please enter 1) to roll your own dice, 2) to let the computer roll the dice, or 3) to quit:");
         int choice = in.nextInt();
 
+        // If they choose 3, exit
         if(choice == 3)
         {
-            println("Have a nice day!");
-            System.exit(0);
+            ProjectUtils.exit();
         }
         else
         {
+            // Create an empty array
             int[] array;
 
+            // If 2, randomly generate an array
             if(choice == 2)
             {
+                // Randomly generate an array of ints with the range 1 to 6 of size 5 and sort it
                 array = ProjectUtils.sortArray(ProjectUtils.generateIntArray(5, 1, 6));
+
+                // Print the new array
                 println("The five rolls in non-decreasing order are: " + ProjectUtils.makeStringArray(array));
             }
-            else {
+            else
+            {
+                // Call this to clean up
+                in.nextLine();
+
+                // Have the user enter the ints
                 println("Please enter the five dice rolls:");
+
+                // Make it into an array
                 int[] userArray = ProjectUtils.makeIntegerArray(in.nextLine());
 
-                if (ProjectUtils.checkArrayLength(userArray, 5)) {
+                // Check if the array is of legal size
+                if (ProjectUtils.checkArrayLength(userArray, 5))
+                {
+                    // Sort and print the array
                     array = ProjectUtils.sortArray(userArray);
                     println("The five rolls in non-decreasing order are: " + ProjectUtils.makeStringArray(array));
                 }
                 else
                 {
+                    // They didn't enter enough or they entered too many
                     println("You did not enter enough or you entered too many rolls!");
                     System.exit(0);
                 }
