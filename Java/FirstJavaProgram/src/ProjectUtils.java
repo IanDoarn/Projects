@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.*;
 
-
-
 //TODO: clean up some of this to make it faster
 
 public class ProjectUtils
@@ -23,7 +21,6 @@ public class ProjectUtils
     public static void main(String[] args)
     {
         //NOTE: This is a place holder in case I need to test something
-
     }
 
     public static void exit()
@@ -53,6 +50,9 @@ public class ProjectUtils
                 input: "1 2 3 4 5"
                 output: [1, 2, 3, 4, 5]
          */
+
+        // split text on space, if there is no space,
+        // it will be fixed by formatStringArray();
         String[] stringArray = userInput.split(" ");
         int[] intArray = new int[stringArray.length];
 
@@ -86,16 +86,81 @@ public class ProjectUtils
         for (int i : intArray) {
             builder.append(i);
             builder.append(' ');
+
         }
         String text = builder.toString();
         return text;
     }
 
+    public static String formatStringArray(String userInput)
+    {
+        /*
+            Simple method to check if the string has whitespaces
+            and has numerical characters.
+
+            This is accomplished using regex to pattern match
+
+            !!IT IS NOT SORTING IT IS SIMPLY CHECKING FOR FORMATTING!!
+
+            References:
+            http://stackoverflow.com/questions/18590901/check-if-a-string-contains-numbers-java
+            http://stackoverflow.com/questions/16048148/regex-to-check-if-whitespace-present
+            http://stackoverflow.com/questions/15147263/regular-expression-to-check-if-string-contains-specified-characters
+         */
+
+        // Checks if string contains spaces
+        String whitespacePattern = "[\\s]";
+
+        if(!userInput.matches(whitespacePattern))
+        {
+            StringBuilder builder = new StringBuilder();
+
+            char[] charArray = userInput.toCharArray();
+
+            for(int i = 0; i < charArray.length; i++)
+            {
+                builder.append(charArray[i]);
+                builder.append(' ');
+            }
+
+            return builder.toString();
+        }
+
+        return userInput;
+
+    }
+
+    public static int[] removeFromArray(int[] inputArray, int removeInt)
+    {
+        /*
+            Removes an integer from an array
+         */
+
+        List<Integer> num = new ArrayList<>();
+
+        for(int i = 0; i < inputArray.length; i++)
+        {
+            if(inputArray[i] != removeInt)
+            {
+                num.add(inputArray[i]);
+            }
+        }
+
+        int[] intArray = new int[num.size()];
+
+        for(int i = 0; i < num.size(); i++)
+        {
+            intArray[i] = num.get(i);
+        }
+
+        return intArray;
+    }
     public static int[] insertIntoArray(int[] inputArray, int newInt)
     {
         /*
             Inserts an integer at the end of an array
          */
+
         List<Integer> num = new ArrayList<>();
 
         for(int i = 0; i < inputArray.length; i++)
@@ -223,7 +288,7 @@ public class ProjectUtils
         {
             // if the number we are looking for is in the array
             // return true
-            if(i == element) { return true; }
+            if(intArray[i] == element) { return true; }
         }
 
         // If the program reaches this point
@@ -328,6 +393,57 @@ public class ProjectUtils
         // See I know how to use the ternary operator....
         return count > maxCount ? array[array.length-1] : popular;
 
+    }
+
+    public static boolean findSequenceInArray(int[] intArray, int sequenceSize)
+    {
+        /*
+            Find if a sequence of numbers in
+            increasing numerical order of n+1
+            exists.
+         */
+
+        // Sort the array just in case it isn't
+        int[] array = sortArray(intArray);
+
+        // Number of time we have a successful comparison
+        int matches = 0;
+
+        // Make sure sequence size is not greater than
+        // 5, since we will only have 5 values
+        if(sequenceSize > 5)
+        {
+            System.out.println("Sequence size to large. Exiting");
+            exit();
+        }
+
+
+        // iterate the array
+        for(int i = 0; i < array.length; i++)
+        {
+            // If the current number is less that the next number
+            // and if the next number is the current number
+            if((array[i] < array[i + 1]) && (array[i + 1] == array[i] + 1 ))
+            {
+                if(matches != sequenceSize)
+                {
+                    matches++;
+                }
+                else if (matches == sequenceSize)
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                // the next value was not n+1 bigger and was
+                // greater than the current value
+                return false;
+            }
+        }
+
+        // Should never get here
+        return false;
     }
 }
 

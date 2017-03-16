@@ -69,6 +69,9 @@ public class OneRoundOneRollYahtzee
         // If 1, get user to type value for array
         else if (input == 1)
         {
+            //NOTE: apparently you have to do this before you can accept an input again. Stupid.
+            in.nextLine();
+
             println("Please enter the five dice rolls:");
             String inputArray = in.nextLine();
             int[] array = ProjectUtils.sortArray(ProjectUtils.makeIntegerArray(inputArray));
@@ -184,11 +187,15 @@ public class OneRoundOneRollYahtzee
 
             // Make current array into a string
             String rollAsString = ProjectUtils.makeStringArray(array);
-            
+
             if(ProjectUtils.checkElementInArray(value, array))
             {
-                // Get the sum of dice with value of 1
-                int sum = ProjectUtils.getElementCount(array, value);
+                // make a map of the array
+                HashMap<Integer, Integer> map = ProjectUtils.getElementCounts(array);
+
+                // Formula: MostCommonElement * NumberOfTimesElementOccurs = Sum
+                int sum = ProjectUtils.getMostCommonInt(array) * map.get(ProjectUtils.getMostCommonInt(array));
+
                 return "Your score for the " + categoryName + " category is: " + sum;
             }
 
@@ -258,15 +265,15 @@ public class OneRoundOneRollYahtzee
             {
                 // Three Of A Kind
                 case 7:
-                    return threeOfAKind(array);
+                    return numberOfAKind(array, 3, "Three Of A Kind");
 
                 // Four Of A Kind
                 case 8:
-                    break;
+                    return numberOfAKind(array, 4, "Four Of A Kind");
 
                 // Full House
                 case 9:
-                    break;
+                    return fullHouse(array);
 
                 // Small Straight
                 case 10:
@@ -288,31 +295,75 @@ public class OneRoundOneRollYahtzee
             return null;
         }
 
-        private String threeOfAKind(int[] intArray)
+        private String numberOfAKind(int[] intArray, int valueToFind, String categoryName)
         {
             /*
-                Find if there are 3 elements of
-                the same value exist in the array
+                Used for: Three Of A Kind and Four Of A Kind
+
+                Find if there are a certain number
+                of elements of the same value exist
+                in the array
              */
 
             // Create a map of the array
-            HashMap<Integer, Integer> map = new HashMap<>();
+            HashMap<Integer, Integer> map = ProjectUtils.getElementCounts(intArray);
 
             // Get the most common element in the array
             int mostCommonElement = ProjectUtils.getMostCommonInt(intArray);
 
-            // If the most common element occurs 3 times
-            // Then we have 3 of a kind
+            // If the most common element occurs the valueToFind times
+            // Then we have valueToFind of a kind
+
             if(map.containsKey(mostCommonElement))
             {
-                if(map.get(mostCommonElement) == 3)
+                if(map.get(mostCommonElement) == valueToFind)
                 {
-                    return "Your score for the Three Of A Kind category is:" + ProjectUtils.sumArray(intArray);
+                    return "Your score for the " + categoryName + " category is: " + ProjectUtils.sumArray(intArray);
                 }
             }
 
+            // There are not three values of the same number
             String rollAsString = ProjectUtils.makeStringArray(intArray);
-            return "The Three Of A Kind category is not legal for this roll: " + rollAsString;
+            return "The " + categoryName + " category is not legal for this roll: " + rollAsString;
+        }
+
+        private String fullHouse(int[] intArray)
+        {
+            /*
+                Full House
+
+                Find if there are 2 numbers of the same value
+                AND 3 numbers of the same value in the array
+             */
+
+            // Create the HashMap from the array
+            HashMap<Integer, Integer> map = ProjectUtils.getElementCounts(intArray);
+
+            int mostCommonElement = ProjectUtils.getMostCommonInt(intArray);
+
+            for(int i = 0; i < intArray.length; i++)
+            {
+                // Find if the most common element occurs
+                // 3 times
+                if(map.containsKey(mostCommonElement))
+                {
+                    if(map.get(mostCommonElement) == 3)
+                    {
+                        map.remove(mostCommonElement);
+                        int[] tempArray = ProjectUtils.removeFromArray(intArray, mostCommonElement);
+                        mostCommonElement = ProjectUtils.getMostCommonInt(tempArray);
+
+                        if(map.get(mostCommonElement) == 2)
+                        {
+                            return "Your score for the Full House category is: 25";
+                        }
+                    }
+                }
+            }
+
+            // If we reach this point, there were not enough matches
+            String rollAsString = ProjectUtils.makeStringArray(intArray);
+            return "The Full House category is not legal for this roll: " + rollAsString;
         }
     }
 }
