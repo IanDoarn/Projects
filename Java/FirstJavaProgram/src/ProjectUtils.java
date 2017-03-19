@@ -7,9 +7,12 @@
  */
 
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.*;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 //TODO: clean up some of this to make it faster
 
@@ -51,6 +54,9 @@ public class ProjectUtils
                 output: [1, 2, 3, 4, 5]
          */
 
+        // ;)
+        seeIfSomeoneDecidedToPutLettersInTheirString(userInput);
+
         // split text on space, if there is no space,
         // it will be fixed by formatStringArray();
         String[] stringArray = userInput.split(" ");
@@ -71,6 +77,14 @@ public class ProjectUtils
         return intArray;
     }
 
+    private static  void seeIfSomeoneDecidedToPutLettersInTheirString(String input)
+    {
+        if(input.matches("[^A-Za-z]"))
+        {
+            JOptionPane.showMessageDialog(null, "Yo, those ain't all numbers");
+            exit();
+        }
+    }
     public static String makeStringArray(int[] intArray)
     {
         /*
