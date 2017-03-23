@@ -1,11 +1,15 @@
 /**
  * Created by doarni on 3/21/2017.
  */
+import java.util.Scanner;
 public class HomeworkConvertMillis
 {
+    private static Scanner in = new Scanner(System.in);
     public static void main(String[] args)
     {
-        System.out.print(convertMillis(555550000));
+        System.out.print("Enter a value in milliseconds to convert:");
+        long milli = in.nextLong();
+        System.out.println(convertMillis(milli));
     }
 
     public static String convertMillis(long millis)
