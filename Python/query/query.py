@@ -7,9 +7,9 @@ path = os.path.dirname(os.path.realpath(__file__))
 
 p = postgres.Postgres()
 
-p._user = "reader"
-p._pass = "ZimmerBiomet"
-p._host = "vsbslgprd01.zmr.zimmer.com"
+p._user = None
+p._pass = None
+p._host = None
 
 p.test_connection()
 
