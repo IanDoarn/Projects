@@ -1,5 +1,9 @@
+import random
+import sys
+
+
 questions = [
-             [5,
+             [
               'There are three types of repetition statements: the while loop, the do-while loop, and the ____ loop.',
               'The part of the loop that contains the statements to be repeated is called the loop ____.',
               'A one-time execution of a loop body is referred to as an _______ of the loop.',
@@ -23,7 +27,7 @@ questions = [
               'The _____ keyword immediately ends the innermost loop, which contains the break.',
               'The continue keyword only ____ the current iteration.'
               ],
-             [6,
+             [
               'Making programs modular and reusable is one of the central goals in software engineering. '
               'Java provides many powerful constructs that help to achieve this goal. _____ are one such construct.',
               'The method _____ specifies the modifiers, return value type, method name, '
@@ -58,7 +62,7 @@ questions = [
               'the entire program at once. This approach may seem to take more time for coding (because you are '
               'repeatedly compiling and running the program), but it actually saves time and makes debugging easier.'
               ],
-             [7,
+             [
               'A variable is declared as an ____ type using the syntax elementType[] arrayRefVar or '
               'elementType arrayRefVar[]. The style elementType[] arrayRefVar is preferred, although '
               'elementType arrayRefVar[] is legal.',
@@ -75,7 +79,7 @@ questions = [
               'Programmers often mistakenly ______ the first element in an array with index 1, but it should be 0. '
               'This is called the index off-by-one error.'
               ],
-             [8,
+             [
               'A _______ array can be used to store a table.',
               'A variable for two-dimensional arrays can be ______ using the syntax: elementType[][] arrayVar.',
               'A two-dimensional array can be created using the ______: new elementType [ROW_SIZE][COLUMN_SIZE].',
@@ -86,7 +90,7 @@ questions = [
               'three-dimensional arrays can be declared as elementType[][][] arrayVar, and a three-dimensional '
               'array can be created using new elementType[size1][size2] [size3].'
               ],
-             [9,
+             [
               'A _____ is a template for objects. It defines the properties of objects and provides constructors for'
               ' creating objects and methods for manipulating them.',
               'A class is also a data type. You can use it to _____ object reference variables. An object reference '
@@ -122,12 +126,131 @@ questions = [
               ]
              ]
 
-answers = [[5, 'for', 'body', 'iteration', 'infinite', 'structure', 'while',
+answers = [['for', 'body', 'iteration', 'infinite', 'structure', 'while',
             'first', 'predetermined', 'sentinel', 'fixed', 'initializes', 'pretest', 'posttest',
             'continue', 'break', 'ends'],
-           [6, 'Methods', 'header', 'void', 'signature', 'terminating', 'arguments',
+           ['Methods', 'header', 'void', 'signature', 'terminating', 'arguments',
             'calls', 'invoked', 'overloaded', 'local', 'abstraction', 'collections', 'implementing'],
-           [7, 'array', 'allocate', 'assign', 'element', 'size', 'reference'],
-           [8, 'two-dimensional', 'declared', 'syntax', 'represented', 'create', 'multidimensional'],
-           [9, 'class', 'declare', 'instance', 'static', 'invoke', 'public',
+           ['array', 'allocate', 'assign', 'element', 'size', 'reference'],
+           ['two-dimensional', 'declared', 'syntax', 'represented', 'create', 'multidimensional'],
+           ['class', 'declare', 'instance', 'static', 'invoke', 'public',
             'accessor', 'setter', 'pass-by-value', 'null', 'cannot', 'scope', 'constructor']]
+
+questions_asked = []
+quizzes = []
+
+def get_question():
+    chapter_index = random.randrange(len(questions))
+    question_index = random.randrange(len(questions[chapter_index]))
+    chapter_number = chapter_index + 5
+    question = questions[chapter_index][question_index]
+    data = [question, chapter_index, question_index, chapter_number]
+    questions_asked.append(question)
+
+    if question in questions_asked:
+        return data
+    else:
+        get_question()
+
+def get_answer(chapter_index, question_index):
+    return answers[chapter_index][question_index]
+
+def score(num_correct, num_wrong, total):
+    if num_correct is not 0:
+        if num_wrong is not 0:
+            return int((num_correct / total) * 101)
+        else:
+            return 100
+    else:
+        return  0
+
+def give_quiz(question_count=5):
+    correct = 0
+    wrong = 0
+    total = 0
+    quiz_info = {'total': 0, 'wrong': [], 'correct': []}
+
+
+    for q in range(question_count):
+
+        data = get_question()
+        question = data[0]
+        answer = get_answer(data[1], data[2])
+
+        total = q + 1
+        print(question)
+        user_answer = input('Your Answer? ')
+
+        if user_answer.lower() == answer.lower():
+            print('Correct!')
+            correct += 1
+            quiz_info['correct'].append({'number': q + 1,
+                                         'user_answer': user_answer,
+                                         'correct_answer': answer,
+                                         'question': question})
+            print('Current score: {} / {} = {}%'.format(str(correct),
+                                                        str(total),
+                                                        str(score(correct, wrong, total))))
+        else:
+            wrong += 1
+            quiz_info['wrong'].append({'number': q + 1,
+                                         'user_answer': user_answer,
+                                         'correct_answer': answer,
+                                         'question': question})
+            print('Not quite!')
+            print('The correct answer was: {}'.format(answer.lower()))
+            print('Please see chapter {}, item {}.'.format(str(data[3]),
+                                                           str(data[2] + 1)))
+            print('Current score: {} / {} = {}%'.format(str(correct),
+                                                        str(total),
+                                                        str(score(correct, wrong, total))))
+
+        print('\n')
+
+    print('Final score: {} / {} = {}%'.format(str(correct),
+                                              str(total),
+                                              str(score(correct, wrong, total))))
+
+    if input('Would you like to take another quiz? (y/n):').lower() != 'y':
+        quiz_info['total'] = total
+        quiz_info['score'] = score(correct, wrong, total)
+        quizzes.append(quiz_info)
+        questions_asked.clear()
+        if input('View Report Card? (y/n):').lower() == 'y':
+            report_card(quizzes)
+    else:
+        quiz_info['total'] = total
+        quiz_info['score'] = score(correct, wrong, total)
+        quizzes.append(quiz_info)
+        questions_asked.clear()
+        print('')
+        give_quiz()
+
+def report_card(quizzes):
+    print('This is your report card for the quiz / quizzes you took!\n')
+    print('Number of quizzes taken: {}\n\n'.format(str(len(quizzes))))
+
+    for quiz_index in range(len(quizzes)):
+        print('Quiz {}'.format(str(quiz_index + 1)))
+        quiz = quizzes[quiz_index]
+
+        print('Score: {}% Total Questions: {}'.format(str(quiz['score']),
+                                                      str(quiz['total'])))
+        print('Correct: {} Wrong: {}'.format(str(len(quiz['correct'])),
+                                             str(len(quiz['wrong']))))
+        print('')
+        print('Questions missed:')
+        for question in quiz['wrong']:
+            print("{}.) {}".format(str(question['number']), question['question']))
+            print('Your answer: {}'.format(question['user_answer']))
+            print('Correct answer: {}'.format(question['correct_answer']))
+            print('\n')
+        print('Questions Correct:')
+        for question in quiz['correct']:
+            print("{}.) {}".format(str(question['number']), question['question']))
+            print('Your answer: {}'.format(question['user_answer']))
+            print('Correct answer: {}'.format(question['correct_answer']))
+            print('\n')
+
+if __name__ == '__main__':
+    give_quiz()
