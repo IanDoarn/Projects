@@ -4,7 +4,7 @@ The requires an encryption key, either using the default one or a self created o
 Normally keys are not hardcoded but for the sake of this example, one is.
 Create by: Ian Doarn
 '''
-import convert
+from misc import convert
 
 '''Generic encryption key'''
 key = {"A": "u", "B": "w",

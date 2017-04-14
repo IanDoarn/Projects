@@ -1,7 +1,7 @@
-from quicksort import QuickSort
 import random
 import sys
 
+from misc.quicksort import QuickSort
 
 RANGE = 10
 

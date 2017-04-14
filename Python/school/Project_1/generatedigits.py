@@ -1,6 +1,7 @@
 import random
 import sys
-from quicksort import QuickSort
+
+from misc.quicksort import QuickSort
 
 RANGE = 100
 

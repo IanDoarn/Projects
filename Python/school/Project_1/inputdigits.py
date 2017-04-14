@@ -1,5 +1,7 @@
-from quicksort import QuickSort
 import sys
+
+from misc.quicksort import QuickSort
+
 
 class InputDigits:
 

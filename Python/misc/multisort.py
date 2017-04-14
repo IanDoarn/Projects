@@ -7,9 +7,10 @@ Yeah
 Written by: Ian Doarn
 """
 
-import quicksort
 import random
 import time
+
+from misc import quicksort
 
 SIZE = 1000
 SPAN = 1000000

@@ -1,6 +1,7 @@
-from quicksort import QuickSort
 import random
 import sys
+
+from misc.quicksort import QuickSort
 
 ROLL_RANGE = 5
 DICE_RANGE = 6
