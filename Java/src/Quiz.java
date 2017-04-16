@@ -172,7 +172,7 @@ public class Quiz
         {
             if(numWrong != 0)
             {
-                return (int)(numCorrect / totalQuestions) * 101;
+                return (int)(((double)numCorrect / (double)totalQuestions) * 100);
             }
             return 100;
         }
